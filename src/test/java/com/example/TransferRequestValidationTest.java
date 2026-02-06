@@ -1,9 +1,9 @@
-package org.example;
+package com.example;
 
-import org.example.dto.TransferRequest;
-import org.junit.jupiter.api.Test;
+import com.example.dto.TransferRequest;
+import com.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.junit.jupiter.api.Assertions.*;
 
 class TransferRequestValidationTest {
 

@@ -1,11 +1,11 @@
-package org.example;
+package com.example;
 
-import org.example.entity.Account;
-import org.example.enums.AccountStatus;
-import org.example.exception.InsufficientBalanceException;
-import org.junit.jupiter.api.Test;
+import com.example.entity.Account;
+import com.example.enums.AccountStatus;
+import com.example.exception.InsufficientBalanceException;
+import com.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
 
