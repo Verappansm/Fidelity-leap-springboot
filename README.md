@@ -52,11 +52,13 @@ mysql -u root -p money_transfer_db < database/schema.sql
 
 ### 3. Run Seed Data Script
 
+The seed data includes pre-generated BCrypt password hashes, so you can run it directly:
+
 ```bash
 mysql -u root -p money_transfer_db < database/seed-data.sql
 ```
 
-**Note**: Update the password hashes in `seed-data.sql` or use the application to register users.
+**Note**: The BCrypt hashes are already included for the default passwords (admin123, user123).
 
 ## Application Configuration
 
