@@ -32,3 +32,10 @@ jwt:
 # Application Configuration
 app:
   min-balance: 1000.00
+
+# Default admin user credentials (auto-created on first startup)
+admin:
+  default:
+    email: admin@system.com
+    password: admin123
+    name: System Administrator
