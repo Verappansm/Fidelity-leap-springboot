@@ -1,7 +1,7 @@
 package com.example.dto;
 
-import com.example.config.AccountStatus;
-import com.example.config.AccountType;
+import com.example.enums.AccountStatus;
+import com.example.enums.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

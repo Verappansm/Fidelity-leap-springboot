@@ -1,6 +1,6 @@
 package com.example.entity;
 
-import com.example.config.TransactionStatus;
+import com.example.enums.TransactionStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

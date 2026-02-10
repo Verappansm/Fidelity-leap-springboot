@@ -1,7 +1,7 @@
 package com.example.entity;
 
-import com.example.config.AccountStatus;
-import com.example.config.AccountType;
+import com.example.enums.AccountStatus;
+import com.example.enums.AccountType;
 import com.example.exception.InsufficientBalanceException;
 import jakarta.persistence.*;
 import lombok.*;

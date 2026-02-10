@@ -1,6 +1,6 @@
 package com.example.dto;
 
-import com.example.config.TransactionStatus;
+import com.example.enums.TransactionStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
