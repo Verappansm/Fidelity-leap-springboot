@@ -1,6 +1,6 @@
 package com.example.exception;
 
-public class ConcurrencyException extends RuntimeException {
+public final class ConcurrencyException extends TransferException {
 
     public ConcurrencyException(String message) {
         super(message);

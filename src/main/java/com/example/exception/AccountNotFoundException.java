@@ -1,6 +1,6 @@
 package com.example.exception;
 
-public class AccountNotFoundException extends RuntimeException {
+public final class AccountNotFoundException extends TransferException {
 
     public AccountNotFoundException(String message) {
         super(message);
