@@ -1,5 +1,6 @@
 package com.example.aop;
 
+import com.example.exception.TransferException;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -31,8 +32,11 @@ public class ServiceLoggingAspect {
             return result;
 
         } catch (Throwable ex) {
-            log.error("<<< Exiting:  {} | Result: FAILURE | Exception: {}",
-                    methodName, ex.getMessage());
+            if (ex instanceof TransferException te) {
+                log.error("<<< Exiting:  {} | Business Error: {}", methodName, te.getMessage());
+            } else {
+                log.error("<<< Exiting:  {} | System Error: {}", methodName, ex.getMessage());
+            }
             throw ex;
         }
     }
