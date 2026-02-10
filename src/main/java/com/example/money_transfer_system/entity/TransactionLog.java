@@ -3,9 +3,12 @@ package com.example.money_transfer_system.entity;
 import com.example.money_transfer_system.enums.TransactionStatus;
 import com.example.money_transfer_system.enums.TransactionType;
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
@@ -19,9 +22,14 @@ import java.util.UUID;
 @AllArgsConstructor
 public class TransactionLog {
 
+    //@Id
+    //@Column(name = "transaction_id", length = 36, updatable = false)
+    //private String id = UUID.randomUUID().toString();
+
+    @Setter(AccessLevel.NONE)
     @Id
-    @Column(length = 36)
-    private String id = UUID.randomUUID().toString();
+    @Column(name = "transaction_id", length = 36, updatable = false, nullable = false)
+    private String id;
 
     @Column(name = "from_account_id")
     private Long fromAccountId;

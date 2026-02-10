@@ -90,34 +90,35 @@ public class TransferService {
         accountRepository.save(fromAccount);
         accountRepository.save(toAccount);
 
-        String transactionId = UUID.randomUUID().toString();
+        //String transactionId = UUID.randomUUID().toString();
 
         // Log DEBIT transaction
         TransactionLog debitLog = new TransactionLog();
-        debitLog.setId(transactionId + "-DEBIT");
+        //debitLog.setId(transactionId + "-DEBIT");
         debitLog.setFromAccountId(fromAccount.getId());
         debitLog.setToAccountId(toAccount.getId());
         debitLog.setAmount(request.getAmount());
         debitLog.setTransactionType(TransactionType.DEBIT);
         debitLog.setStatus(TransactionStatus.SUCCESS);
-        debitLog.setIdempotencyKey(request.getIdempotencyKey());
+        debitLog.setIdempotencyKey(request.getIdempotencyKey() + "-DEBIT");
         transactionLogRepository.save(debitLog);
 
         // Log CREDIT transaction
         TransactionLog creditLog = new TransactionLog();
-        creditLog.setId(transactionId + "-CREDIT");
+        //creditLog.setId(transactionId + "-CREDIT");
         creditLog.setFromAccountId(fromAccount.getId());
         creditLog.setToAccountId(toAccount.getId());
         creditLog.setAmount(request.getAmount());
         creditLog.setTransactionType(TransactionType.CREDIT);
         creditLog.setStatus(TransactionStatus.SUCCESS);
+        creditLog.setIdempotencyKey(request.getIdempotencyKey() + "-CREDIT");
         transactionLogRepository.save(creditLog);
 
         log.info("Transfer successful: {} from account {} to account {}", 
                 request.getAmount(), fromAccount.getId(), toAccount.getId());
 
         return new TransferResponse(
-                transactionId,
+                debitLog.getId(),   // or creditLog.getId()
                 "SUCCESS",
                 "Transfer completed successfully",
                 fromAccount.getId(),
