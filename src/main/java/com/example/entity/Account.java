@@ -57,7 +57,10 @@ public class Account {
     }
 
     public boolean isActive() {
-        return this.status == AccountStatus.ACTIVE;
+        return switch (this.status) {
+            case ACTIVE -> true;
+            case LOCKED, CLOSED -> false;
+        };
     }
 
     public void debit(BigDecimal amount) {
@@ -66,8 +69,9 @@ public class Account {
 
         if (resultingBalance.compareTo(minimumBalance) < 0) {
             throw new InsufficientBalanceException(
-                    String.format("Insufficient balance. Account %d (%s) requires minimum balance of %s. " +
-                                    "Current: %s, Debit: %s, Resulting: %s",
+                    """
+                    Insufficient balance. Account %d (%s) requires minimum balance of %s. \
+                    Current: %s, Debit: %s, Resulting: %s""".formatted(
                             this.id, this.accountType, minimumBalance,
                             this.balance, amount, resultingBalance));
         }

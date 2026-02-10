@@ -55,6 +55,8 @@ class TransferRequestValidationTest {
 
         Set<ConstraintViolation<TransferRequest>> violations = validator.validate(request);
 
-        assertEquals(4, violations.size());
+        assertEquals(4, violations.size(), """
+                All four fields (fromAccountId, toAccountId, amount, \
+                idempotencyKey) should fail validation when null""");
     }
 }

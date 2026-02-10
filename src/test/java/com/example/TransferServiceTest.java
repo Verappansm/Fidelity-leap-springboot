@@ -49,13 +49,18 @@ class TransferServiceTest {
         TransferResponse response = transferService.transfer(
                 new TransferRequest(savings.getId(), student.getId(), new BigDecimal("5000.00"), "IDEM-001"));
 
-        assertNotNull(response.getTransactionId());
-        assertEquals(TransactionStatus.SUCCESS, response.getStatus());
+        assertNotNull(response.transactionId(), """
+                Transaction ID should not be null \
+                for a successful transfer""");
+        assertEquals(TransactionStatus.SUCCESS, response.status());
 
         Account updatedSavings = accountRepository.findById(savings.getId()).orElseThrow();
         Account updatedStudent = accountRepository.findById(student.getId()).orElseThrow();
 
-        assertEquals(0, new BigDecimal("45000.00").compareTo(updatedSavings.getBalance()));
+        assertEquals(0, new BigDecimal("45000.00").compareTo(updatedSavings.getBalance()),
+                """
+                Savings account balance should be 45000.00 after \
+                transferring 5000.00 from initial balance of 50000.00""");
         assertEquals(0, new BigDecimal("15000.00").compareTo(updatedStudent.getBalance()));
     }
 
@@ -68,7 +73,7 @@ class TransferServiceTest {
         TransferResponse r2 = transferService.transfer(
                 new TransferRequest(savings.getId(), student.getId(), new BigDecimal("1000.00"), "IDEM-DUP"));
 
-        assertEquals(r1.getTransactionId(), r2.getTransactionId());
+        assertEquals(r1.transactionId(), r2.transactionId());
 
         Account updatedSavings = accountRepository.findById(savings.getId()).orElseThrow();
         assertEquals(0, new BigDecimal("49000.00").compareTo(updatedSavings.getBalance()));
@@ -99,7 +104,7 @@ class TransferServiceTest {
         TransferResponse response = transferService.transfer(
                 new TransferRequest(student.getId(), savings.getId(), new BigDecimal("10000.00"), "IDEM-STU"));
 
-        assertEquals(TransactionStatus.SUCCESS, response.getStatus());
+        assertEquals(TransactionStatus.SUCCESS, response.status());
 
         Account updatedStudent = accountRepository.findById(student.getId()).orElseThrow();
         assertEquals(0, BigDecimal.ZERO.compareTo(updatedStudent.getBalance()));

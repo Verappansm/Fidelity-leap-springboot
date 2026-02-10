@@ -8,8 +8,8 @@ import com.example.entity.Account;
 import com.example.entity.TransactionLog;
 import com.example.exception.AccountNotFoundException;
 import com.example.exception.ConcurrencyException;
-import com.example.exception.InsufficientBalanceException;
 import com.example.exception.InvalidTransferException;
+import com.example.exception.TransferException;
 import com.example.repository.AccountRepository;
 import com.example.repository.TransactionLogRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,43 +30,43 @@ public class TransferService {
 
     @Transactional
     public TransferResponse transfer(TransferRequest request) {
-        Optional<TransactionLog> existing = transactionLogRepository.findByIdempotencyKey(request.getIdempotencyKey());
+        Optional<TransactionLog> existing = transactionLogRepository.findByIdempotencyKey(request.idempotencyKey());
         if (existing.isPresent()) {
-            log.info("Duplicate idempotencyKey detected: '{}'. Returning existing transaction.", request.getIdempotencyKey());
+            log.info("Duplicate idempotencyKey detected: '{}'. Returning existing transaction.", request.idempotencyKey());
             return toResponse(existing.get());
         }
 
         try {
-            if (request.getFromAccountId().equals(request.getToAccountId())) {
+            if (request.fromAccountId().equals(request.toAccountId())) {
                 throw new InvalidTransferException("Cannot transfer to the same account.");
             }
 
-            Account fromAccount = accountRepository.findById(request.getFromAccountId())
+            Account fromAccount = accountRepository.findById(request.fromAccountId())
                     .orElseThrow(() -> new AccountNotFoundException(
-                            "Source account not found. ID: " + request.getFromAccountId()));
+                            "Source account not found. ID: " + request.fromAccountId()));
 
-            Account toAccount = accountRepository.findById(request.getToAccountId())
+            Account toAccount = accountRepository.findById(request.toAccountId())
                     .orElseThrow(() -> new AccountNotFoundException(
-                            "Destination account not found. ID: " + request.getToAccountId()));
+                            "Destination account not found. ID: " + request.toAccountId()));
 
             if (!fromAccount.isActive()) {
-                throw new InvalidTransferException("Source account is not ACTIVE. ID: " + request.getFromAccountId());
+                throw new InvalidTransferException("Source account is not ACTIVE. ID: " + request.fromAccountId());
             }
 
             if (!toAccount.isActive()) {
-                throw new InvalidTransferException("Destination account is not ACTIVE. ID: " + request.getToAccountId());
+                throw new InvalidTransferException("Destination account is not ACTIVE. ID: " + request.toAccountId());
             }
 
-            fromAccount.debit(request.getAmount());
-            toAccount.credit(request.getAmount());
+            fromAccount.debit(request.amount());
+            toAccount.credit(request.amount());
 
             accountRepository.save(fromAccount);
             accountRepository.save(toAccount);
 
             TransactionLog txLog = new TransactionLog(
-                    null, request.getFromAccountId(), request.getToAccountId(),
-                    request.getAmount(), TransactionStatus.SUCCESS, null,
-                    request.getIdempotencyKey(), null);
+                    null, request.fromAccountId(), request.toAccountId(),
+                    request.amount(), TransactionStatus.SUCCESS, null,
+                    request.idempotencyKey(), null);
 
             return toResponse(transactionLogRepository.save(txLog));
 
@@ -74,7 +74,7 @@ public class TransferService {
             throw new ConcurrencyException(
                     "Concurrent modification detected during transfer. Please retry.", ex);
 
-        } catch (AccountNotFoundException | InvalidTransferException | InsufficientBalanceException ex) {
+        } catch (TransferException ex) {
             log.error("Transfer failed: {}", ex.getMessage());
             throw ex;
         }

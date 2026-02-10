@@ -55,7 +55,7 @@ public class MoneyTransferSystemApplication implements CommandLineRunner {
         alice = accountRepository.findById(alice.getId()).orElseThrow();
         bob = accountRepository.findById(bob.getId()).orElseThrow();
 
-        log.info("Transfer SUCCESS — TX ID: {}", tx1.getTransactionId());
+        log.info("Transfer SUCCESS — TX ID: {}", tx1.transactionId());
         log.info("Alice Balance: {}", alice.getBalance());
         log.info("Bob   Balance: {}", bob.getBalance());
 
@@ -69,8 +69,8 @@ public class MoneyTransferSystemApplication implements CommandLineRunner {
         alice = accountRepository.findById(alice.getId()).orElseThrow();
         bob = accountRepository.findById(bob.getId()).orElseThrow();
 
-        log.info("Idempotency handled — returned existing TX ID: {}", tx2.getTransactionId());
-        log.info("Same TX? {}", tx1.getTransactionId().equals(tx2.getTransactionId()));
+        log.info("Idempotency handled — returned existing TX ID: {}", tx2.transactionId());
+        log.info("Same TX? {}", tx1.transactionId().equals(tx2.transactionId()));
         log.info("Alice Balance (unchanged): {}", alice.getBalance());
         log.info("Bob   Balance (unchanged): {}", bob.getBalance());
 

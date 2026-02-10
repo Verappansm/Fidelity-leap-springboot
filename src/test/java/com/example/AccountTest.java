@@ -51,4 +51,20 @@ class AccountTest {
 
         assertEquals(0, new BigDecimal("8000.00").compareTo(account.getBalance()));
     }
+
+    @Test
+    @DisplayName("debit() exception message contains account details")
+    void testDebit_ExceptionMessage() {
+        Account account = createSavingsAccount(new BigDecimal("6000.00"));
+
+        InsufficientBalanceException ex = assertThrows(
+                InsufficientBalanceException.class,
+                () -> account.debit(new BigDecimal("2000.00")));
+
+        String expectedMessage = """
+                Insufficient balance. Account 1 (SAVINGS) requires minimum balance of 5000. \
+                Current: 6000.00, Debit: 2000.00, Resulting: 4000.00""";
+
+        assertEquals(expectedMessage, ex.getMessage());
+    }
 }
