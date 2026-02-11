@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import com.example.money_transfer_system.enums.AccountType;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -48,6 +49,10 @@ public class Account {
 
     @Column(name = "min_balance", nullable = false, precision = 15, scale = 2)
     private BigDecimal minBalance = BigDecimal.ZERO;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "account_type", nullable = false)
+    private AccountType accountType;
 
     @Version
     @Column(nullable = false)

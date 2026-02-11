@@ -28,9 +28,11 @@ public class AuthService {
         return accountService.registerAccount(
                 request.getHolderName(),
                 request.getEmail(),
-                request.getPassword()
+                request.getPassword(),
+                request.getAccountType()
         );
     }
+
 
     public LoginResponse login(LoginRequest request) {
         try {

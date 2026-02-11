@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
+import com.example.money_transfer_system.enums.AccountType;
 
 import java.math.BigDecimal;
 
@@ -51,7 +52,8 @@ public class AdminUserInitializer implements CommandLineRunner {
         admin.setStatus(AccountStatus.ACTIVE);
         admin.setApproved(true);
         admin.setRole(Role.ROLE_ADMIN);
-        admin.setMinBalance(BigDecimal.ZERO);
+        admin.setAccountType(AccountType.ADMIN);
+
 
         accountRepository.save(admin);
 

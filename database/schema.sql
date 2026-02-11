@@ -18,7 +18,7 @@ CREATE TABLE accounts (
     status ENUM('ACTIVE', 'LOCKED', 'CLOSED') NOT NULL DEFAULT 'LOCKED',
     approved BOOLEAN NOT NULL DEFAULT FALSE,
     role ENUM('ROLE_USER', 'ROLE_ADMIN') NOT NULL DEFAULT 'ROLE_USER',
-    min_balance DECIMAL(15, 2) NOT NULL DEFAULT 0.00,
+    account_type ENUM('SAVINGS','STUDENT','CURRENT','SALARY','NRE','NRO','BUSINESS','PREMIUM','JOINT','SENIOR') NOT NULL,
     version INT NOT NULL DEFAULT 0,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -26,6 +26,7 @@ CREATE TABLE accounts (
     INDEX idx_status (status),
     INDEX idx_approved (approved)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- Transaction Logs Table
 CREATE TABLE transaction_logs (

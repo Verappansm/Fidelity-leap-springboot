@@ -1,5 +1,6 @@
 package com.example.money_transfer_system.service;
 
+import com.example.money_transfer_system.config.AccountProperties;
 import com.example.money_transfer_system.dto.DepositRequest;
 import com.example.money_transfer_system.entity.Account;
 import com.example.money_transfer_system.entity.TransactionLog;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.money_transfer_system.enums.AccountType;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,11 +32,11 @@ public class AccountService {
     private final TransactionLogRepository transactionLogRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${app.min-balance}")
-    private BigDecimal defaultMinBalance;
+    private final AccountProperties accountProperties;
 
     @Transactional
-    public Account registerAccount(String holderName, String email, String password) {
+    public Account registerAccount(String holderName, String email, String password, AccountType accountType) {
+
         if (accountRepository.existsByEmail(email)) {
             throw new IllegalArgumentException("Email already registered");
         }
@@ -47,26 +49,29 @@ public class AccountService {
         account.setStatus(AccountStatus.LOCKED);
         account.setApproved(false);
         account.setRole(Role.ROLE_USER);
-        account.setMinBalance(defaultMinBalance);
+        account.setAccountType(accountType);
 
-        Account saved = accountRepository.save(account);
-        log.info("New account registered: {} (ID: {}), pending approval", email, saved.getId());
-        return saved;
+        return accountRepository.save(account);
     }
+
 
     @Transactional
     public Account approveAccount(Long accountId) {
+
         Account account = accountRepository.findById(accountId)
-                .orElseThrow(() -> new AccountNotFoundException("Account not found with ID: " + accountId));
+                .orElseThrow(() -> new AccountNotFoundException("Account not found"));
 
         account.setApproved(true);
         account.setStatus(AccountStatus.ACTIVE);
-        account.setBalance(defaultMinBalance); // Set initial balance to minimum balance
 
-        Account approved = accountRepository.save(account);
-        log.info("Account approved: {} (ID: {})", account.getEmail(), accountId);
-        return approved;
+        BigDecimal minimumBalance = accountProperties
+                .getMinimumBalance(account.getAccountType().name());
+
+        account.setBalance(minimumBalance);
+
+        return accountRepository.save(account);
     }
+
 
     @Transactional
     public Account rejectAccount(Long accountId) {

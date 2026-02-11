@@ -1,5 +1,6 @@
 package com.example.money_transfer_system.service;
 
+import com.example.money_transfer_system.config.AccountProperties;
 import com.example.money_transfer_system.dto.TransferRequest;
 import com.example.money_transfer_system.dto.TransferResponse;
 import com.example.money_transfer_system.entity.Account;
@@ -26,6 +27,9 @@ public class TransferService {
 
     private final AccountRepository accountRepository;
     private final TransactionLogRepository transactionLogRepository;
+
+    private final AccountProperties accountProperties;
+
 
     @Transactional
     public TransferResponse transfer(TransferRequest request) {
@@ -75,12 +79,18 @@ public class TransferService {
         }
 
         // Additional Rule: Check minimum balance requirement
+        BigDecimal minimumBalance = accountProperties
+                .getMinimumBalance(fromAccount.getAccountType().name());
+
         BigDecimal balanceAfterTransfer = fromAccount.getBalance().subtract(request.getAmount());
-        if (balanceAfterTransfer.compareTo(fromAccount.getMinBalance()) < 0) {
+
+        if (balanceAfterTransfer.compareTo(minimumBalance) < 0) {
             throw new InsufficientFundsException(
-                    "Transfer would violate minimum balance requirement of " + fromAccount.getMinBalance() + " (TRX-400)"
+                    "Transfer would violate minimum balance requirement of "
+                            + minimumBalance + " (TRX-400)"
             );
         }
+
 
         // Execute transfer: Debit from source, Credit to destination
         fromAccount.setBalance(balanceAfterTransfer);
