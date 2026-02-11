@@ -1,0 +1,138 @@
+2026-02-11T17:24:29.857Z  INFO 8820 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : Starting MoneyTransferSystemApplication using Java 17.0.8 with PID 8820 (C:\Users\labuser\Capstone_project\Fidelity-leap-springboot\target\classes started by labuser in C:\Users\labuser\Capstone_project\Fidelity-leap-springboot)
+2026-02-11T17:24:29.863Z  INFO 8820 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-02-11T17:24:29.958Z  INFO 8820 --- [money-transfer-system] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-11T17:24:29.961Z  INFO 8820 --- [money-transfer-system] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-11T17:24:31.296Z  INFO 8820 --- [money-transfer-system] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-11T17:24:31.407Z  INFO 8820 --- [money-transfer-system] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 95 ms. Found 2 JPA repository interfaces.
+2026-02-11T17:24:32.815Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-11T17:24:32.836Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-11T17:24:32.838Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-11T17:24:32.910Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-11T17:24:32.913Z  INFO 8820 --- [money-transfer-system] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2949 ms
+2026-02-11T17:24:33.193Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-11T17:24:33.277Z  INFO 8820 --- [money-transfer-system] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.41.Final
+2026-02-11T17:24:33.335Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-11T17:24:33.761Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-11T17:24:33.807Z  INFO 8820 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-11T17:24:34.067Z  INFO 8820 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c3118bc
+2026-02-11T17:24:34.072Z  INFO 8820 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-11T17:24:34.158Z  WARN 8820 --- [money-transfer-system] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-11T17:24:34.192Z  INFO 8820 --- [money-transfer-system] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-11T17:24:35.669Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-11T17:24:35.753Z  INFO 8820 --- [money-transfer-system] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-11T17:24:36.531Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-11T17:24:37.317Z  INFO 8820 --- [money-transfer-system] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-02-11T17:24:37.318Z  WARN 8820 --- [money-transfer-system] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-02-11T17:24:37.477Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-02-11T17:24:38.669Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-02-11T17:24:38.738Z  INFO 8820 --- [money-transfer-system] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-02-11T17:24:38.754Z  INFO 8820 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : Started MoneyTransferSystemApplication in 9.815 seconds (process running for 10.457)
+2026-02-11T17:24:38.994Z  INFO 8820 --- [money-transfer-system] [restartedMain] c.e.m.config.AdminUserInitializer        : Admin user already exists: admin@system.com
+2026-02-11T17:24:53.866Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-11T17:24:53.868Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-11T17:24:53.871Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-11T17:24:54.311Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferController] Executing method: getTransactionHistory with args: [Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjIsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiJ2aXNoYWxAc3lzdGVt...]
+2026-02-11T17:24:54.311Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AccountController] Executing method: getBalance with args: [2, Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjIsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiJ2aXNoYWxAc3lzdGVt...]
+2026-02-11T17:24:54.314Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getTransactionHistory with args: [2]
+2026-02-11T17:24:54.316Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getBalance with args: [2]
+2026-02-11T17:24:54.356Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Method getTransactionHistory executed successfully in 39 ms
+2026-02-11T17:24:54.363Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferController] Method getTransactionHistory executed successfully in 51 ms
+2026-02-11T17:24:54.374Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AccountService] Method getBalance executed successfully in 57 ms
+2026-02-11T17:24:54.376Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AccountController] Method getBalance executed successfully in 63 ms
+2026-02-11T17:25:03.255Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthController] Executing method: login with args: [[SANITIZED]]
+2026-02-11T17:25:03.256Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthService] Executing method: login with args: [[SANITIZED]]
+2026-02-11T17:25:03.502Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAccountByEmail with args: [admin@system.com]
+2026-02-11T17:25:03.513Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAccountByEmail executed successfully in 10 ms
+2026-02-11T17:25:03.546Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.service.AuthService                : User logged in successfully: admin@system.com
+2026-02-11T17:25:03.547Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthService] Method login executed successfully in 290 ms
+2026-02-11T17:25:03.548Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthController] Method login executed successfully in 292 ms
+2026-02-11T17:25:03.667Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllAccounts with args: []
+2026-02-11T17:25:03.667Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllTransactions with args: []
+2026-02-11T17:25:03.668Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAllAccounts with args: []
+2026-02-11T17:25:03.669Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getAllTransactions with args: []
+2026-02-11T17:25:03.677Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingAccounts with args: []
+2026-02-11T17:25:03.682Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Method getAllTransactions executed successfully in 10 ms
+2026-02-11T17:25:03.682Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getPendingAccounts with args: []
+2026-02-11T17:25:03.683Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllTransactions executed successfully in 14 ms
+2026-02-11T17:25:03.688Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAllAccounts executed successfully in 19 ms
+2026-02-11T17:25:03.688Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllAccounts executed successfully in 20 ms
+2026-02-11T17:25:03.709Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AccountService] Method getPendingAccounts executed successfully in 23 ms
+2026-02-11T17:25:03.711Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingAccounts executed successfully in 29 ms
+2026-02-11T17:25:37.062Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: deposit with args: [DepositRequest(accountId=2, amount=5000)]
+2026-02-11T17:25:37.065Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: deposit with args: [DepositRequest(accountId=2, amount=5000)]
+2026-02-11T17:25:37.098Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.service.AccountService             : Deposited 5000 to account ID: 2
+2026-02-11T17:25:37.099Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AccountService] Method deposit executed successfully in 33 ms
+2026-02-11T17:25:37.165Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Method deposit executed successfully in 101 ms
+2026-02-11T17:25:37.193Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllTransactions with args: []
+2026-02-11T17:25:37.195Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getAllTransactions with args: []
+2026-02-11T17:25:37.205Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [TransferService] Method getAllTransactions executed successfully in 9 ms
+2026-02-11T17:25:37.206Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllTransactions executed successfully in 11 ms
+2026-02-11T17:26:20.718Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthController] Executing method: register with args: [[SANITIZED]]
+2026-02-11T17:26:20.719Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthService] Executing method: register with args: [[SANITIZED]]
+2026-02-11T17:26:20.722Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: registerAccount with args: [kavin, kavin@system.com, kavint, SAVINGS]
+2026-02-11T17:26:20.871Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AccountService] Method registerAccount executed successfully in 148 ms
+2026-02-11T17:26:20.877Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthService] Method register executed successfully in 157 ms
+2026-02-11T17:26:20.879Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthController] Method register executed successfully in 160 ms
+2026-02-11T17:26:42.538Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AuthController] Executing method: login with args: [[SANITIZED]]
+2026-02-11T17:26:42.539Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AuthService] Executing method: login with args: [[SANITIZED]]
+2026-02-11T17:26:42.551Z ERROR 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AuthService] Method login failed after 11 ms with exception: User account is locked
+2026-02-11T17:26:42.553Z ERROR 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AuthController] Method login failed after 14 ms with exception: User account is locked
+2026-02-11T17:26:42.565Z  WARN 8820 --- [money-transfer-system] [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authentication.LockedException: User account is locked]
+2026-02-11T17:27:03.989Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthController] Executing method: login with args: [[SANITIZED]]
+2026-02-11T17:27:03.990Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthService] Executing method: login with args: [[SANITIZED]]
+2026-02-11T17:27:04.116Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAccountByEmail with args: [admin@system.com]
+2026-02-11T17:27:04.124Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAccountByEmail executed successfully in 7 ms
+2026-02-11T17:27:04.126Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.service.AuthService                : User logged in successfully: admin@system.com
+2026-02-11T17:27:04.127Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthService] Method login executed successfully in 136 ms
+2026-02-11T17:27:04.127Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AuthController] Method login executed successfully in 137 ms
+2026-02-11T17:27:04.234Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllTransactions with args: []
+2026-02-11T17:27:04.250Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllAccounts with args: []
+2026-02-11T17:27:04.253Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getAllTransactions with args: []
+2026-02-11T17:27:04.254Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAllAccounts with args: []
+2026-02-11T17:27:04.261Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-8] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingAccounts with args: []
+2026-02-11T17:27:04.265Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-8] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getPendingAccounts with args: []
+2026-02-11T17:27:04.267Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Method getAllTransactions executed successfully in 12 ms
+2026-02-11T17:27:04.275Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllTransactions executed successfully in 22 ms
+2026-02-11T17:27:04.275Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAllAccounts executed successfully in 15 ms
+2026-02-11T17:27:04.281Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-8] c.e.m.aspect.LoggingAspect               : [AccountService] Method getPendingAccounts executed successfully in 12 ms
+2026-02-11T17:27:04.282Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllAccounts executed successfully in 28 ms
+2026-02-11T17:27:04.282Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-8] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingAccounts executed successfully in 17 ms
+2026-02-11T17:27:06.578Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: approveAccount with args: [3]
+2026-02-11T17:27:06.580Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: approveAccount with args: [3]
+2026-02-11T17:27:06.588Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AccountService] Method approveAccount executed successfully in 7 ms
+2026-02-11T17:27:06.601Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Method approveAccount executed successfully in 21 ms
+2026-02-11T17:27:08.359Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingAccounts with args: []
+2026-02-11T17:27:08.363Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getPendingAccounts with args: []
+2026-02-11T17:27:08.368Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllAccounts with args: []
+2026-02-11T17:27:08.369Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAllAccounts with args: []
+2026-02-11T17:27:08.370Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AccountService] Method getPendingAccounts executed successfully in 6 ms
+2026-02-11T17:27:08.372Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingAccounts executed successfully in 9 ms
+2026-02-11T17:27:08.384Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAllAccounts executed successfully in 14 ms
+2026-02-11T17:27:08.385Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllAccounts executed successfully in 16 ms
+2026-02-11T17:27:16.514Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AuthController] Executing method: login with args: [[SANITIZED]]
+2026-02-11T17:27:16.514Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AuthService] Executing method: login with args: [[SANITIZED]]
+2026-02-11T17:27:16.640Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAccountByEmail with args: [kavin@system.com]
+2026-02-11T17:27:16.648Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAccountByEmail executed successfully in 7 ms
+2026-02-11T17:27:16.650Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.service.AuthService                : User logged in successfully: kavin@system.com
+2026-02-11T17:27:16.651Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AuthService] Method login executed successfully in 137 ms
+2026-02-11T17:27:16.652Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AuthController] Method login executed successfully in 138 ms
+2026-02-11T17:27:16.732Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [TransferController] Executing method: getTransactionHistory with args: [Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjMsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiJrYXZpbkBzeXN0ZW0u...]
+2026-02-11T17:27:16.733Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AccountController] Executing method: getBalance with args: [3, Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjMsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiJrYXZpbkBzeXN0ZW0u...]
+2026-02-11T17:27:16.767Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getTransactionHistory with args: [3]
+2026-02-11T17:27:16.774Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getBalance with args: [3]
+2026-02-11T17:27:16.793Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [TransferService] Method getTransactionHistory executed successfully in 18 ms
+2026-02-11T17:27:16.796Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [TransferController] Method getTransactionHistory executed successfully in 34 ms
+2026-02-11T17:27:16.798Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AccountService] Method getBalance executed successfully in 20 ms
+2026-02-11T17:27:16.799Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AccountController] Method getBalance executed successfully in 30 ms
+2026-02-11T17:28:25.919Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferController] Executing method: transfer with args: [TransferRequest(fromAccountId=3, toAccountId=2, amount=10000, idempotencyKey=fa458110-57f0-4ffb-bcd3..., Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjMsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiJrYXZpbkBzeXN0ZW0u...]
+2026-02-11T17:28:25.924Z  INFO 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: transfer with args: [TransferRequest(fromAccountId=3, toAccountId=2, amount=10000, idempotencyKey=fa458110-57f0-4ffb-bcd3...]
+2026-02-11T17:28:25.942Z ERROR 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferService] Method transfer failed after 16 ms with exception: Insufficient funds in source account (TRX-400)
+2026-02-11T17:28:25.948Z ERROR 8820 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferController] Method transfer failed after 27 ms with exception: Insufficient funds in source account (TRX-400)
+2026-02-11T17:28:25.955Z  WARN 8820 --- [money-transfer-system] [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.money_transfer_system.exception.InsufficientFundsException: Insufficient funds in source account (TRX-400)]
