@@ -52,3 +52,12 @@ admin:
     email: admin@system.com
     password: admin123
     name: System Administrator
+
+
+# Enable file logging
+logging:
+  file:
+    name: money-transfer.log
+    path: logs/
+  level:
+    root: INFO
