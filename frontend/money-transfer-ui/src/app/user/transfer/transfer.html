@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="card">
+    <h2>Transfer Money</h2>
+
+    <form (ngSubmit)="transfer()">
+
+      <div class="form-group">
+        <label>To Account ID</label>
+        <input
+          type="number"
+          [(ngModel)]="transferData.toAccountId"
+          name="toAccountId"
+          required>
+      </div>
+
+      <div class="form-group">
+        <label>Amount (₹)</label>
+        <input
+          type="number"
+          [(ngModel)]="transferData.amount"
+          name="amount"
+          required>
+      </div>
+
+      @if (message) {
+        <div class="message" [ngClass]="messageType">
+          {{ message }}
+        </div>
+      }
+
+      <button type="submit" class="btn btn-primary" [disabled]="loading">{{ loading ? 'Processing...' : 'Transfer' }}</button>
+      &nbsp;&nbsp;
+      <!-- <button type="button" class="btn btn-secondary" routerLink="/dashboard">Dashboard</button> -->
+    </form>
+  </div>
+</div>

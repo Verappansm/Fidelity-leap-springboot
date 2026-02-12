@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="card">
+    <h1>Create Account</h1>
+    <p class="subtitle">Join our secure money transfer platform</p>
+
+    <form (ngSubmit)="onRegister()" #registerForm="ngForm" novalidate>
+      
+      <div class="form-group">
+        <label for="holderName">Full Name</label>
+        <input
+          type="text"
+          name="holderName"
+          [(ngModel)]="formData.holderName"
+          required
+          minlength="2"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="formData.email"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="formData.password"
+          required
+          minlength="6"
+        />
+      </div>
+
+      <div class="message" 
+        [ngClass]="messageType" 
+        [style.display]="message ? 'block' : 'none'">
+        {{ message }}
+      </div>
+
+
+      <button type="submit" class="btn btn-primary" [disabled]="loading">{{ loading ? 'Processing...' : 'Register' }}</button>
+      &nbsp;&nbsp;
+      <button type="button" class="btn btn-secondary" routerLink="/">Home</button>
+    </form>
+
+    <p class="link-text">
+      Already have an account?
+      <a routerLink="/login">Login here</a>
+    </p>
+  </div>
+</div>

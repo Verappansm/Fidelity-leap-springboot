@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="card">
+    <h2>All Accounts</h2>
+
+    @if (accounts.length === 0) {
+      <p>No accounts found.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Balance</th>
+            <th>Status</th>
+            <th>Approved</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (acc of accounts; track acc.id) {
+            <tr>
+              <td>{{ acc.id }}</td>
+              <td>{{ acc.holderName }}</td>
+              <td>{{ acc.email }}</td>
+              <td>₹{{ formatAmount(acc.balance) }}</td>
+
+              <td>
+                <span class="badge {{ acc.status.toLowerCase() }}">
+                  {{ acc.status }}
+                </span>
+              </td>
+
+              <td>{{ acc.approved ? '✓' : '✗' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+
+    <br>
+    <!-- <button class="btn btn-secondary" routerLink="/admin">Dashboard</button> -->
+  </div>
+</div>

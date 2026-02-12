@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="card">
+    <h2>Transaction History</h2>
+
+    @if (transactions.length === 0) {
+      <p>No transactions yet.</p>
+    } @else {
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Account</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (tx of transactions; track tx.id) {
+            <tr>
+              <td>{{ formatDate(tx.createdOn) }}</td>
+              <td>
+                <span class="badge {{ tx.transactionType.toLowerCase() }}">
+                  {{ tx.transactionType }}
+                </span>
+              </td>
+              <td>{{ getOtherAccount(tx) }}</td>
+              <td>₹{{ tx.amount }}</td>
+              <td>
+                <span class="badge {{ tx.status.toLowerCase() }}">
+                  {{ tx.status }}
+                </span>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+    <br><br>
+    <!-- <button type="button" class="btn btn-secondary" routerLink="/dashboard">Dashboard</button> -->
+  </div>
+</div>

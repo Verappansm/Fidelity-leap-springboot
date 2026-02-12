@@ -1,0 +1,54 @@
+<div class="navbar">
+  <h2>Money Transfer System - Admin</h2>
+  <div>
+    <span>{{ holderName }}</span>
+    <button class="btn btn-small" (click)="logout()">Logout</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="card">
+    <h1>Admin Dashboard</h1>
+
+    <div class="button-group">
+      <button
+        routerLink="approvals"
+        routerLinkActive="active-link"
+        #rla1="routerLinkActive"
+        class="btn"
+        [ngClass]="rla1.isActive ? 'btn-secondary' : 'btn-primary'">
+        Pending Approvals
+      </button>
+
+
+     <button
+      routerLink="deposit"
+      routerLinkActive="active-link"
+      #rla2="routerLinkActive"
+      class="btn"
+      [ngClass]="rla2.isActive ? 'btn-secondary' : 'btn-primary'">
+      Deposit Money
+    </button>
+
+    <button
+      routerLink="transactions"
+      routerLinkActive="active-link"
+      #rla3="routerLinkActive"
+      class="btn"
+      [ngClass]="rla3.isActive ? 'btn-secondary' : 'btn-primary'">
+      All Transactions
+    </button>
+
+    <button
+      routerLink="accounts"
+      routerLinkActive="active-link"
+      #rla4="routerLinkActive"
+      class="btn"
+      [ngClass]="rla4.isActive ? 'btn-secondary' : 'btn-primary'">
+      All Accounts
+    </button>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
