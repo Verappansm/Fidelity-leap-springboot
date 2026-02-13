@@ -38,5 +38,5 @@ export const routes: Routes = [
       { path: 'accounts', component: Accounts }
     ]
   },
-  // { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '' }
 ];
