@@ -4,7 +4,6 @@
 CREATE DATABASE IF NOT EXISTS money_transfer_db;
 USE money_transfer_db;
 
--- Drop tables if they exist (for clean setup)
 DROP TABLE IF EXISTS transaction_logs;
 DROP TABLE IF EXISTS accounts;
 
@@ -30,15 +29,19 @@ CREATE TABLE accounts (
 
 -- Transaction Logs Table
 CREATE TABLE transaction_logs (
-    id VARCHAR(36) PRIMARY KEY,
+    transaction_id VARCHAR(36) PRIMARY KEY,
     from_account_id BIGINT,
     to_account_id BIGINT,
     amount DECIMAL(15, 2) NOT NULL,
-    transaction_type ENUM('DEBIT', 'CREDIT', 'DEPOSIT') NOT NULL,
-    status ENUM('SUCCESS', 'FAILED') NOT NULL DEFAULT 'SUCCESS',
+    transaction_type ENUM('DEBIT', 'CREDIT', 'DEPOSIT', 'TRANSFER', 'REVERSAL') NOT NULL,
+    status ENUM('SUCCESS', 'FAILED', 'ROLLBACK_REQUESTED', 'ROLLBACK_REJECTED', 'ROLLED_BACK') NOT NULL DEFAULT 'SUCCESS',
     failure_reason VARCHAR(500),
     idempotency_key VARCHAR(255) UNIQUE,
     created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    rollback_requested_at DATETIME NULL,
+    rollback_processed_at DATETIME NULL,
+    rollback_processed_by BIGINT NULL,
+    original_transaction_id VARCHAR(36) NULL,
     INDEX idx_from_account (from_account_id),
     INDEX idx_to_account (to_account_id),
     INDEX idx_idempotency (idempotency_key),

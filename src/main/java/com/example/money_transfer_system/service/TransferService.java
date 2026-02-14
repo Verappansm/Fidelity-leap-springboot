@@ -1,6 +1,7 @@
 // src/main/java/com/example/money_transfer_system/service/TransferService.java
 package com.example.money_transfer_system.service;
 
+import java.time.LocalDateTime;
 import com.example.money_transfer_system.config.AccountProperties;
 import com.example.money_transfer_system.dto.TransferRequest;
 import com.example.money_transfer_system.dto.TransferResponse;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.example.money_transfer_system.config.RollbackProperties;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -29,7 +31,7 @@ public class TransferService {
     private final TransactionLogRepository transactionLogRepository;
     private final AccountProperties accountProperties;
 
-    // ✅ NEW: used to persist FAILED logs in a new transaction
+    private final RollbackProperties rollbackProperties;
     private final TransactionLogService transactionLogService;
 
     @Transactional
@@ -151,4 +153,125 @@ public class TransferService {
     public List<TransactionLog> getAllTransactions() {
         return transactionLogRepository.findAllByOrderByCreatedOnDesc();
     }
+
+    @Transactional
+    public void requestRollback(String transactionId, Long requesterId) {
+
+        TransactionLog original = transactionLogRepository.findById(transactionId)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+
+        if (!original.getFromAccountId().equals(requesterId)) {
+            throw new RuntimeException("You can only request rollback for your own transaction");
+        }
+
+        if (original.getStatus() != TransactionStatus.SUCCESS) {
+            throw new RuntimeException("Only successful transactions can be rolled back");
+        }
+
+        LocalDateTime expiryTime = original.getCreatedOn()
+                .plusHours(rollbackProperties.getWindowHours());
+
+        if (LocalDateTime.now().isAfter(expiryTime)) {
+            throw new RuntimeException("Rollback window expired");
+        }
+
+        original.setStatus(TransactionStatus.ROLLBACK_REQUESTED);
+        original.setRollbackRequestedAt(LocalDateTime.now());
+
+        transactionLogRepository.save(original);
+
+        log.info("Rollback requested for transaction {}", transactionId);
+    }
+
+
+    @Transactional
+    public void approveRollback(String transactionId, Long adminId) {
+
+        TransactionLog original = transactionLogRepository.findById(transactionId)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+
+        if (original.getStatus() != TransactionStatus.ROLLBACK_REQUESTED) {
+            throw new RuntimeException("Rollback not requested");
+        }
+
+        if (transactionLogRepository.existsByOriginalTransactionId(transactionId)) {
+            throw new RuntimeException("Transaction already reversed");
+        }
+
+        Account fromAccount = accountRepository.findById(original.getFromAccountId())
+                .orElseThrow(() -> new RuntimeException("Source account not found"));
+
+        Account toAccount = accountRepository.findById(original.getToAccountId())
+                .orElseThrow(() -> new RuntimeException("Destination account not found"));
+
+        BigDecimal amount = original.getAmount();
+
+        // Ensure destination has sufficient funds
+        if (toAccount.getBalance().compareTo(amount) < 0) {
+            throw new RuntimeException("Destination account has insufficient funds for rollback");
+        }
+
+        // Respect minimum balance
+        BigDecimal minBalance = accountProperties
+                .getMinimumBalance(toAccount.getAccountType().name());
+
+        BigDecimal afterDebit = toAccount.getBalance().subtract(amount);
+
+        if (afterDebit.compareTo(minBalance) < 0) {
+            throw new RuntimeException("Rollback violates minimum balance requirement");
+        }
+
+        // Reverse balances
+        toAccount.setBalance(afterDebit);
+        fromAccount.setBalance(fromAccount.getBalance().add(amount));
+
+        accountRepository.save(toAccount);
+        accountRepository.save(fromAccount);
+
+        // Update original transaction
+        original.setStatus(TransactionStatus.ROLLED_BACK);
+        original.setRollbackProcessedAt(LocalDateTime.now());
+        original.setRollbackProcessedBy(adminId);
+
+        transactionLogRepository.save(original);
+
+        // 🔥 Create REVERSAL log entry
+        TransactionLog reversal = new TransactionLog();
+        reversal.setFromAccountId(toAccount.getId());
+        reversal.setToAccountId(fromAccount.getId());
+        reversal.setAmount(amount);
+        reversal.setTransactionType(TransactionType.REVERSAL);
+        reversal.setStatus(TransactionStatus.SUCCESS);
+        reversal.setOriginalTransactionId(original.getId());
+        reversal.setIdempotencyKey(original.getId() + "-REVERSAL");
+
+        transactionLogRepository.save(reversal);
+
+        log.info("Rollback approved by admin {} for transaction {}", adminId, transactionId);
+    }
+
+
+    @Transactional
+    public void rejectRollback(String transactionId) {
+
+        TransactionLog original = transactionLogRepository.findById(transactionId)
+                .orElseThrow(() -> new RuntimeException("Transaction not found"));
+
+        if (original.getStatus() != TransactionStatus.ROLLBACK_REQUESTED) {
+            throw new RuntimeException("Rollback not requested");
+        }
+
+        original.setStatus(TransactionStatus.ROLLBACK_REJECTED);
+        original.setRollbackProcessedAt(LocalDateTime.now());
+
+        transactionLogRepository.save(original);
+
+        log.info("Rollback rejected for transaction {}", transactionId);
+    }
+
+    public List<TransactionLog> getPendingRollbacks() {
+        return transactionLogRepository.findByStatus(TransactionStatus.ROLLBACK_REQUESTED);
+    }
+
+
 }

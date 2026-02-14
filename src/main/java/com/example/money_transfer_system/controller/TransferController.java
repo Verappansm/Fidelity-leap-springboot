@@ -53,4 +53,19 @@ public class TransferController {
         List<TransactionLog> history = transferService.getTransactionHistory(accountId);
         return ResponseEntity.ok(history);
     }
+
+    @PostMapping("/{transactionId}/rollback")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<?> requestRollback(
+            @PathVariable String transactionId,
+            @RequestHeader("Authorization") String authHeader) {
+
+        String token = authHeader.substring(7);
+        Long accountId = jwtUtil.extractAccountId(token);
+
+        transferService.requestRollback(transactionId, accountId);
+
+        return ResponseEntity.ok("Rollback request submitted successfully");
+    }
+
 }

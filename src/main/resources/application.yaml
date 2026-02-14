@@ -45,6 +45,9 @@ app:
       SENIOR: 1000
       ADMIN: 0
 
+  rollback:
+    window-hours: 2
+
 
 # Default admin user credentials (auto-created on first startup)
 admin:

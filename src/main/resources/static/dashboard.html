@@ -100,7 +100,7 @@
                 return;
             }
 
-            let html = '<table><thead><tr><th>Date</th><th>Type</th><th>Account</th><th>Amount</th><th>Status</th></tr></thead><tbody>';
+            let html = '<table><thead><tr><th>Date</th><th>Type</th><th>Account</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead><tbody>';
 
             transactions.forEach(tx => {
                 const date = new Date(tx.createdOn).toLocaleString();
@@ -109,18 +109,56 @@
                 const amount = parseFloat(tx.amount).toFixed(2);
                 const status = tx.status;
 
+                let actionButton = '';
+
+                // Show rollback button only for successful DEBIT transactions
+                if (
+                    type === 'DEBIT' &&
+                    status === 'SUCCESS'
+                ) {
+                    actionButton = `<button onclick="requestRollback('${tx.id}')"
+                                     class="btn btn-small btn-danger">
+                                     Request Rollback
+                                    </button>`;
+                }
+
                 html += `<tr>
                     <td>${date}</td>
                     <td><span class="badge ${type.toLowerCase()}">${type}</span></td>
                     <td>${otherAccount || 'N/A'}</td>
                     <td>₹${amount}</td>
                     <td><span class="badge ${status.toLowerCase()}">${status}</span></td>
+                    <td>${actionButton}</td>
                 </tr>`;
             });
 
             html += '</tbody></table>';
             container.innerHTML = html;
         }
+
+
+        async function requestRollback(transactionId) {
+            const confirmAction = confirm("Are you sure you want to request rollback?");
+            if (!confirmAction) return;
+
+            try {
+                const response = await apiCall(`/api/v1/transfers/${transactionId}/rollback`, {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    alert("Rollback request submitted successfully!");
+                    loadTransactions();
+                } else {
+                    const data = await response.json();
+                    alert(data.message || "Rollback request failed");
+                }
+
+            } catch (error) {
+                alert("An error occurred");
+            }
+        }
+
 
         // Handle transfer
         document.getElementById('transferForm').addEventListener('submit', async (e) => {
