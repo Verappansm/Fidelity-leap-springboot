@@ -235,7 +235,7 @@ public class TransferService {
 
         transactionLogRepository.save(original);
 
-        // 🔥 Create REVERSAL log entry
+        // Create REVERSAL log entry
         TransactionLog reversal = new TransactionLog();
         reversal.setFromAccountId(toAccount.getId());
         reversal.setToAccountId(fromAccount.getId());
