@@ -2,6 +2,7 @@ package com.example.money_transfer_system.service;
 
 import com.example.money_transfer_system.config.AccountProperties;
 import com.example.money_transfer_system.dto.DepositRequest;
+import com.example.money_transfer_system.dto.RegisterRequest;
 import com.example.money_transfer_system.entity.Account;
 import com.example.money_transfer_system.entity.TransactionLog;
 import com.example.money_transfer_system.enums.AccountStatus;
@@ -35,21 +36,26 @@ public class AccountService {
     private final AccountProperties accountProperties;
 
     @Transactional
-    public Account registerAccount(String holderName, String email, String password, AccountType accountType) {
+    public Account registerAccount(RegisterRequest registerRequest) {
 
-        if (accountRepository.existsByEmail(email)) {
+        if (accountRepository.existsByEmail(registerRequest.getEmail())) {
             throw new IllegalArgumentException("Email already registered");
         }
 
         Account account = new Account();
-        account.setHolderName(holderName);
-        account.setEmail(email);
-        account.setPasswordHash(passwordEncoder.encode(password));
+        account.setHolderName(registerRequest.getHolderName());
+        account.setEmail(registerRequest.getEmail());
+        account.setPasswordHash(passwordEncoder.encode(registerRequest.getPassword()));
         account.setBalance(BigDecimal.ZERO);
         account.setStatus(AccountStatus.LOCKED);
         account.setApproved(false);
         account.setRole(Role.ROLE_USER);
-        account.setAccountType(accountType);
+        account.setAccountType(registerRequest.getAccountType());
+
+        // NEW PROFILE FIELDS
+        account.setPhone(registerRequest.getPhone());
+        account.setAddress(registerRequest.getAddress());
+        account.setDateOfBirth(registerRequest.getDateOfBirth());
 
         return accountRepository.save(account);
     }
