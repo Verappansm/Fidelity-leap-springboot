@@ -52,6 +52,11 @@
         </div>
 
         <div class="card">
+            <h2>Pending Rollback Requests</h2>
+            <div id="pendingRollbacks"></div>
+        </div>
+
+        <div class="card">
             <h2>All Accounts</h2>
             <div id="allAccounts"></div>
         </div>
@@ -252,10 +257,98 @@
             container.innerHTML = html;
         }
 
+
+        async function loadPendingRollbacks() {
+            try {
+                const response = await apiCall('/api/v1/admin/rollbacks/pending');
+                if (response.ok) {
+                    const data = await response.json();
+                    displayPendingRollbacks(data);
+                }
+            } catch (error) {
+                console.error("Failed to load rollback requests");
+            }
+        }
+
+        function displayPendingRollbacks(transactions) {
+            const container = document.getElementById('pendingRollbacks');
+
+            if (transactions.length === 0) {
+                container.innerHTML = "<p>No pending rollback requests.</p>";
+                return;
+            }
+
+            let html = `<table>
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Amount</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>`;
+
+            transactions.forEach(tx => {
+                html += `<tr>
+                    <td>${tx.id}</td>
+                    <td>${tx.fromAccountId}</td>
+                    <td>${tx.toAccountId}</td>
+                    <td>₹${parseFloat(tx.amount).toFixed(2)}</td>
+                    <td>
+                        <button onclick="approveRollback('${tx.id}')" class="btn btn-small btn-success">Approve</button>
+                        <button onclick="rejectRollback('${tx.id}')" class="btn btn-small btn-danger">Reject</button>
+                    </td>
+                </tr>`;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        async function approveRollback(transactionId) {
+            try {
+                const response = await apiCall(`/api/v1/admin/rollbacks/${transactionId}/approve`, {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    alert("Rollback approved!");
+                    loadPendingRollbacks();
+                    loadAllTransactions();
+                } else {
+                    const data = await response.json();
+                    alert(data.message || "Approval failed");
+                }
+            } catch (error) {
+                alert("Error approving rollback");
+            }
+        }
+
+        async function rejectRollback(transactionId) {
+            try {
+                const response = await apiCall(`/api/v1/admin/rollbacks/${transactionId}/reject`, {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    alert("Rollback rejected");
+                    loadPendingRollbacks();
+                } else {
+                    const data = await response.json();
+                    alert(data.message || "Rejection failed");
+                }
+            } catch (error) {
+                alert("Error rejecting rollback");
+            }
+        }
+
         // Initial load
         loadPendingAccounts();
         loadAllTransactions();
         loadAllAccounts();
+        loadPendingRollbacks();
     </script>
 </body>
 
