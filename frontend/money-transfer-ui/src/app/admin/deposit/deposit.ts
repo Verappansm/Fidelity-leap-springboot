@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../../core/api';
 import { RouterModule } from '@angular/router';
+import { FormService } from '../../core/services/form.service';
 
 @Component({
   selector: 'app-deposit',
@@ -21,38 +22,31 @@ export class Deposit {
 
   constructor(
     private http: HttpClient,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private form: FormService
   ) {}
 
   deposit(): void {
 
-    if (this.loading) return;
+  if (this.loading) return;
 
-    this.loading = true;
+  this.loading = true;
 
-    this.http.post(API.ADMIN.DEPOSIT, {
-      accountId: this.accountId,
-      amount: this.amount
-    }).subscribe({
-      next: () => {
-        this.message = 'Deposit successful';
-        this.messageType = 'success';
+  this.http.post(API.ADMIN.DEPOSIT, {
+    accountId: this.accountId,
+    amount: this.amount
+  }).subscribe({
+    next: () => {
+      this.form.setSuccess(this, 'Deposit successful');
+      this.accountId = 0;
+      this.amount = 0;
+      this.cdr.detectChanges();
+    },
+    error: (err) => {
+      this.form.setError(this, err, 'Deposit failed');
+      this.cdr.detectChanges();
+    }
+  });
+}
 
-        // reset inputs
-        this.accountId = 0;
-        this.amount = 0;
-
-        this.loading = false;
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        this.message =
-          err?.error?.message || 'Deposit failed';
-        this.messageType = 'error';
-
-        this.loading = false;
-        this.cdr.detectChanges();
-      }
-    });
-  }
 }
