@@ -12,6 +12,9 @@ CREATE TABLE accounts (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     holder_name VARCHAR(100) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
+    phone VARCHAR(20),
+    address VARCHAR(255),
+    date_of_birth DATE,
     password_hash VARCHAR(255) NOT NULL,
     balance DECIMAL(15, 2) NOT NULL DEFAULT 0.00,
     status ENUM('ACTIVE', 'LOCKED', 'CLOSED') NOT NULL DEFAULT 'LOCKED',
@@ -49,3 +52,4 @@ CREATE TABLE transaction_logs (
     FOREIGN KEY (from_account_id) REFERENCES accounts(id) ON DELETE SET NULL,
     FOREIGN KEY (to_account_id) REFERENCES accounts(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+

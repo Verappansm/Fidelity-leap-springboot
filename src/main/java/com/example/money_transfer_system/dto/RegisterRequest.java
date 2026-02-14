@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import com.example.money_transfer_system.enums.AccountType;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -28,5 +30,9 @@ public class RegisterRequest {
 
     @NotNull(message = "Account type is required")
     private AccountType accountType;
+
+    private String phone;
+    private String address;
+    private LocalDate dateOfBirth;
 
 }

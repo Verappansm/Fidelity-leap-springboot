@@ -11,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import com.example.money_transfer_system.enums.AccountType;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -29,6 +30,15 @@ public class Account {
 
     @Column(nullable = false, unique = true)
     private String email;
+
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
 
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
