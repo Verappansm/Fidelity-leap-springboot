@@ -314,3 +314,228 @@
 2026-02-14T06:53:44.800Z  INFO 988 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingAccounts executed successfully in 26 ms
 2026-02-14T06:53:44.839Z  INFO 988 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [TransferService] Method getAllTransactions executed successfully in 48 ms
 2026-02-14T06:53:44.840Z  INFO 988 --- [money-transfer-system] [http-nio-8080-exec-2] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllTransactions executed successfully in 76 ms
+2026-02-14T07:00:11.974Z  INFO 988 --- [money-transfer-system] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-14T07:00:12.103Z  INFO 988 --- [money-transfer-system] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-14T07:00:12.113Z  INFO 988 --- [money-transfer-system] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-14T07:00:12.119Z  INFO 988 --- [money-transfer-system] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-14T07:00:12.136Z  INFO 988 --- [money-transfer-system] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-14T07:07:24.402Z  INFO 1920 --- [money-transfer-system] [main] .e.m.MoneyTransferSystemApplicationTests : Starting MoneyTransferSystemApplicationTests using Java 17.0.8 with PID 1920 (started by labuser in C:\Users\labuser\Downloads\Fidelity-leap-springboot-v3)
+2026-02-14T07:07:24.405Z  INFO 1920 --- [money-transfer-system] [main] .e.m.MoneyTransferSystemApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2026-02-14T07:07:26.239Z  INFO 1920 --- [money-transfer-system] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-14T07:07:26.397Z  INFO 1920 --- [money-transfer-system] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 130 ms. Found 2 JPA repository interfaces.
+2026-02-14T07:07:28.007Z  INFO 1920 --- [money-transfer-system] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-14T07:07:28.116Z  INFO 1920 --- [money-transfer-system] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.41.Final
+2026-02-14T07:07:28.180Z  INFO 1920 --- [money-transfer-system] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-14T07:07:28.876Z  INFO 1920 --- [money-transfer-system] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-14T07:07:28.975Z  INFO 1920 --- [money-transfer-system] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-14T07:07:29.341Z  INFO 1920 --- [money-transfer-system] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@78fb72cb
+2026-02-14T07:07:29.345Z  INFO 1920 --- [money-transfer-system] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-14T07:07:29.450Z  WARN 1920 --- [money-transfer-system] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-14T07:07:29.492Z  INFO 1920 --- [money-transfer-system] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-14T07:07:31.162Z  INFO 1920 --- [money-transfer-system] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-14T07:07:31.235Z  INFO 1920 --- [money-transfer-system] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-14T07:07:32.330Z  INFO 1920 --- [money-transfer-system] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-14T07:07:33.482Z  INFO 1920 --- [money-transfer-system] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-02-14T07:07:33.484Z  WARN 1920 --- [money-transfer-system] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-02-14T07:07:33.703Z  INFO 1920 --- [money-transfer-system] [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-02-14T07:07:35.591Z  INFO 1920 --- [money-transfer-system] [main] .e.m.MoneyTransferSystemApplicationTests : Started MoneyTransferSystemApplicationTests in 12.01 seconds (process running for 13.902)
+2026-02-14T07:07:35.893Z  INFO 1920 --- [money-transfer-system] [main] c.e.m.config.AdminUserInitializer        : Admin user already exists: admin@system.com
+2026-02-14T07:07:36.895Z  INFO 1920 --- [money-transfer-system] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-14T07:07:36.902Z  INFO 1920 --- [money-transfer-system] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-14T07:07:36.919Z  INFO 1920 --- [money-transfer-system] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-14T07:16:15.143Z  INFO 2052 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : Starting MoneyTransferSystemApplication using Java 17.0.8 with PID 2052 (C:\Users\labuser\Downloads\Fidelity-leap-springboot-v3\target\classes started by labuser in C:\Users\labuser\Downloads\Fidelity-leap-springboot-v3)
+2026-02-14T07:16:15.148Z  INFO 2052 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-02-14T07:16:15.225Z  INFO 2052 --- [money-transfer-system] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-14T07:16:15.227Z  INFO 2052 --- [money-transfer-system] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-14T07:16:16.446Z  INFO 2052 --- [money-transfer-system] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-14T07:16:16.557Z  INFO 2052 --- [money-transfer-system] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 94 ms. Found 2 JPA repository interfaces.
+2026-02-14T07:16:17.932Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-14T07:16:17.955Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-14T07:16:17.956Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-14T07:16:18.031Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-14T07:16:18.033Z  INFO 2052 --- [money-transfer-system] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2803 ms
+2026-02-14T07:16:18.318Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-14T07:16:18.398Z  INFO 2052 --- [money-transfer-system] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.41.Final
+2026-02-14T07:16:18.452Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-14T07:16:18.898Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-14T07:16:18.950Z  INFO 2052 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-14T07:16:19.226Z  INFO 2052 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7d69dff8
+2026-02-14T07:16:19.230Z  INFO 2052 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-14T07:16:19.313Z  WARN 2052 --- [money-transfer-system] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-14T07:16:19.350Z  INFO 2052 --- [money-transfer-system] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-14T07:16:20.763Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-14T07:16:20.832Z  INFO 2052 --- [money-transfer-system] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-14T07:16:21.608Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-14T07:16:22.382Z  INFO 2052 --- [money-transfer-system] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-02-14T07:16:22.383Z  WARN 2052 --- [money-transfer-system] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-02-14T07:16:22.555Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-02-14T07:16:23.731Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-02-14T07:16:23.793Z  INFO 2052 --- [money-transfer-system] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-02-14T07:16:23.812Z  INFO 2052 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : Started MoneyTransferSystemApplication in 9.472 seconds (process running for 10.081)
+2026-02-14T07:16:24.051Z  INFO 2052 --- [money-transfer-system] [restartedMain] c.e.m.config.AdminUserInitializer        : Admin user already exists: admin@system.com
+2026-02-14T07:16:32.370Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-14T07:16:32.371Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-14T07:16:32.374Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-02-14T07:16:32.855Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-3] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingAccounts with args: []
+2026-02-14T07:16:32.855Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:32.855Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllTransactions with args: []
+2026-02-14T07:16:32.855Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllAccounts with args: []
+2026-02-14T07:16:32.857Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-3] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getPendingAccounts with args: []
+2026-02-14T07:16:32.857Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:32.857Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getAllTransactions with args: []
+2026-02-14T07:16:32.857Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAllAccounts with args: []
+2026-02-14T07:16:32.873Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 15 ms
+2026-02-14T07:16:32.880Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [TransferService] Method getAllTransactions executed successfully in 20 ms
+2026-02-14T07:16:32.889Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-3] c.e.m.aspect.LoggingAspect               : [AccountService] Method getPendingAccounts executed successfully in 31 ms
+2026-02-14T07:16:32.891Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 34 ms
+2026-02-14T07:16:32.893Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllTransactions executed successfully in 35 ms
+2026-02-14T07:16:32.893Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-3] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingAccounts executed successfully in 37 ms
+2026-02-14T07:16:32.924Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAllAccounts executed successfully in 62 ms
+2026-02-14T07:16:32.925Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllAccounts executed successfully in 68 ms
+2026-02-14T07:16:38.856Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: approveRollback with args: [d8c4b890-6987-43ee-b3f2-4962f9c1ad33, Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjEsInJvbGUiOiJST0xFX0FETUlOIiwic3ViIjoiYWRtaW5Ac3lzdGVt...]
+2026-02-14T07:16:38.861Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: approveRollback with args: [d8c4b890-6987-43ee-b3f2-4962f9c1ad33, 1]
+2026-02-14T07:16:38.932Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.service.TransferService            : Rollback approved by admin 1 for transaction d8c4b890-6987-43ee-b3f2-4962f9c1ad33
+2026-02-14T07:16:38.933Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [TransferService] Method approveRollback executed successfully in 71 ms
+2026-02-14T07:16:38.990Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Method approveRollback executed successfully in 133 ms
+2026-02-14T07:16:39.013Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllTransactions with args: []
+2026-02-14T07:16:39.014Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getAllTransactions with args: []
+2026-02-14T07:16:39.016Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:39.017Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:39.029Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] c.e.m.aspect.LoggingAspect               : [TransferService] Method getAllTransactions executed successfully in 13 ms
+2026-02-14T07:16:39.031Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllTransactions executed successfully in 17 ms
+2026-02-14T07:16:39.033Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 16 ms
+2026-02-14T07:16:39.035Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 18 ms
+2026-02-14T07:16:42.510Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:42.512Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:42.520Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 7 ms
+2026-02-14T07:16:42.521Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-4] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 9 ms
+2026-02-14T07:16:44.200Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllTransactions with args: []
+2026-02-14T07:16:44.204Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllAccounts with args: []
+2026-02-14T07:16:44.213Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:44.216Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getAllTransactions with args: []
+2026-02-14T07:16:44.218Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAllAccounts with args: []
+2026-02-14T07:16:44.219Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:44.221Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingAccounts with args: []
+2026-02-14T07:16:44.230Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferService] Method getAllTransactions executed successfully in 11 ms
+2026-02-14T07:16:44.240Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAllAccounts executed successfully in 19 ms
+2026-02-14T07:16:44.244Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getPendingAccounts with args: []
+2026-02-14T07:16:44.245Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllTransactions executed successfully in 30 ms
+2026-02-14T07:16:44.246Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllAccounts executed successfully in 28 ms
+2026-02-14T07:16:44.246Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 21 ms
+2026-02-14T07:16:44.260Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 41 ms
+2026-02-14T07:16:44.261Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AccountService] Method getPendingAccounts executed successfully in 15 ms
+2026-02-14T07:16:44.270Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingAccounts executed successfully in 26 ms
+2026-02-14T07:16:48.726Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-3] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingAccounts with args: []
+2026-02-14T07:16:48.733Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllAccounts with args: []
+2026-02-14T07:16:48.743Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAllAccounts with args: []
+2026-02-14T07:16:48.738Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getAllTransactions with args: []
+2026-02-14T07:16:48.741Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-3] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getPendingAccounts with args: []
+2026-02-14T07:16:48.747Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-8] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:48.757Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAllAccounts executed successfully in 13 ms
+2026-02-14T07:16:48.748Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getAllTransactions with args: []
+2026-02-14T07:16:48.758Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-8] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:48.758Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllAccounts executed successfully in 15 ms
+2026-02-14T07:16:48.759Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-3] c.e.m.aspect.LoggingAspect               : [AccountService] Method getPendingAccounts executed successfully in 10 ms
+2026-02-14T07:16:48.775Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [TransferService] Method getAllTransactions executed successfully in 17 ms
+2026-02-14T07:16:48.776Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-3] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingAccounts executed successfully in 35 ms
+2026-02-14T07:16:48.777Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Method getAllTransactions executed successfully in 29 ms
+2026-02-14T07:16:48.777Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-8] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 18 ms
+2026-02-14T07:16:48.791Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-8] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 33 ms
+2026-02-14T07:16:58.696Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:58.697Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:16:58.703Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 5 ms
+2026-02-14T07:16:58.704Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-6] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 7 ms
+2026-02-14T07:17:08.697Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:17:08.698Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:17:08.705Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 5 ms
+2026-02-14T07:17:08.706Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 8 ms
+2026-02-14T07:17:14.529Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AccountController] Executing method: getBalance with args: [1, Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjEsInJvbGUiOiJST0xFX0FETUlOIiwic3ViIjoiYWRtaW5Ac3lzdGVt...]
+2026-02-14T07:17:14.533Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getBalance with args: [1]
+2026-02-14T07:17:14.536Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferController] Executing method: getTransactionHistory with args: [Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjEsInJvbGUiOiJST0xFX0FETUlOIiwic3ViIjoiYWRtaW5Ac3lzdGVt...]
+2026-02-14T07:17:14.541Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getTransactionHistory with args: [1]
+2026-02-14T07:17:14.543Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AccountService] Method getBalance executed successfully in 9 ms
+2026-02-14T07:17:14.544Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AccountController] Method getBalance executed successfully in 13 ms
+2026-02-14T07:17:14.568Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferService] Method getTransactionHistory executed successfully in 26 ms
+2026-02-14T07:17:14.570Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [TransferController] Method getTransactionHistory executed successfully in 30 ms
+2026-02-14T07:17:18.836Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:17:18.838Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:17:18.845Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 6 ms
+2026-02-14T07:17:18.845Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-9] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 8 ms
+2026-02-14T07:17:28.833Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:17:28.834Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getPendingRollbacks with args: []
+2026-02-14T07:17:28.841Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [TransferService] Method getPendingRollbacks executed successfully in 6 ms
+2026-02-14T07:17:28.842Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-10] c.e.m.aspect.LoggingAspect               : [AdminController] Method getPendingRollbacks executed successfully in 8 ms
+2026-02-14T07:17:34.474Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AuthController] Executing method: login with args: [[SANITIZED]]
+2026-02-14T07:17:34.475Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AuthService] Executing method: login with args: [[SANITIZED]]
+2026-02-14T07:17:34.704Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getAccountByEmail with args: [vidisha@gmail.com]
+2026-02-14T07:17:34.711Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AccountService] Method getAccountByEmail executed successfully in 7 ms
+2026-02-14T07:17:34.736Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.service.AuthService                : User logged in successfully: vidisha@gmail.com
+2026-02-14T07:17:34.737Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AuthService] Method login executed successfully in 262 ms
+2026-02-14T07:17:34.738Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-7] c.e.m.aspect.LoggingAspect               : [AuthController] Method login executed successfully in 264 ms
+2026-02-14T07:17:34.810Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AccountController] Executing method: getBalance with args: [2, Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjIsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiJ2aWRpc2hhQGdtYWls...]
+2026-02-14T07:17:34.811Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] c.e.m.aspect.LoggingAspect               : [TransferController] Executing method: getTransactionHistory with args: [Bearer eyJhbGciOiJIUzM4NCJ9.eyJhY2NvdW50SWQiOjIsInJvbGUiOiJST0xFX1VTRVIiLCJzdWIiOiJ2aWRpc2hhQGdtYWls...]
+2026-02-14T07:17:34.813Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AccountService] Executing method: getBalance with args: [2]
+2026-02-14T07:17:34.814Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] c.e.m.aspect.LoggingAspect               : [TransferService] Executing method: getTransactionHistory with args: [2]
+2026-02-14T07:17:34.824Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AccountService] Method getBalance executed successfully in 10 ms
+2026-02-14T07:17:34.825Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-5] c.e.m.aspect.LoggingAspect               : [AccountController] Method getBalance executed successfully in 13 ms
+2026-02-14T07:17:34.847Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] c.e.m.aspect.LoggingAspect               : [TransferService] Method getTransactionHistory executed successfully in 30 ms
+2026-02-14T07:17:34.850Z  INFO 2052 --- [money-transfer-system] [http-nio-8080-exec-1] c.e.m.aspect.LoggingAspect               : [TransferController] Method getTransactionHistory executed successfully in 37 ms
+2026-02-14T07:30:19.703Z  INFO 2052 --- [money-transfer-system] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-14T07:30:19.838Z  INFO 2052 --- [money-transfer-system] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-14T07:30:19.854Z  INFO 2052 --- [money-transfer-system] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-14T07:30:19.864Z  INFO 2052 --- [money-transfer-system] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-14T07:30:19.881Z  INFO 2052 --- [money-transfer-system] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-14T07:34:22.298Z  INFO 3156 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : Starting MoneyTransferSystemApplication using Java 17.0.8 with PID 3156 (C:\Users\labuser\Downloads\Fidelity-leap-springboot-v3\target\classes started by labuser in C:\Users\labuser\Downloads\Fidelity-leap-springboot-v3)
+2026-02-14T07:34:22.302Z  INFO 3156 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-02-14T07:34:22.429Z  INFO 3156 --- [money-transfer-system] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-14T07:34:22.431Z  INFO 3156 --- [money-transfer-system] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-14T07:34:24.194Z  INFO 3156 --- [money-transfer-system] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-14T07:34:24.307Z  INFO 3156 --- [money-transfer-system] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 98 ms. Found 2 JPA repository interfaces.
+2026-02-14T07:34:25.783Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-02-14T07:34:25.806Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-14T07:34:25.809Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-14T07:34:25.903Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-14T07:34:25.905Z  INFO 3156 --- [money-transfer-system] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3471 ms
+2026-02-14T07:34:26.237Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-14T07:34:26.322Z  INFO 3156 --- [money-transfer-system] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.41.Final
+2026-02-14T07:34:26.379Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-14T07:34:26.821Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-14T07:34:26.870Z  INFO 3156 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-14T07:34:27.147Z  INFO 3156 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@37dfc4a8
+2026-02-14T07:34:27.151Z  INFO 3156 --- [money-transfer-system] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-14T07:34:27.235Z  WARN 3156 --- [money-transfer-system] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-14T07:34:27.272Z  INFO 3156 --- [money-transfer-system] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-14T07:34:28.867Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-14T07:34:28.943Z  INFO 3156 --- [money-transfer-system] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-14T07:34:29.825Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-14T07:34:30.600Z  INFO 3156 --- [money-transfer-system] [restartedMain] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-02-14T07:34:30.602Z  WARN 3156 --- [money-transfer-system] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-02-14T07:34:30.756Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-02-14T07:34:31.933Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-02-14T07:34:31.985Z  INFO 3156 --- [money-transfer-system] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-02-14T07:34:32.000Z  INFO 3156 --- [money-transfer-system] [restartedMain] c.e.m.MoneyTransferSystemApplication     : Started MoneyTransferSystemApplication in 10.573 seconds (process running for 11.218)
+2026-02-14T07:34:32.208Z  INFO 3156 --- [money-transfer-system] [restartedMain] c.e.m.config.AdminUserInitializer        : Admin user already exists: admin@system.com
+2026-02-14T07:34:46.947Z  INFO 3156 --- [money-transfer-system] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-14T07:34:46.948Z  INFO 3156 --- [money-transfer-system] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-14T07:34:46.950Z  INFO 3156 --- [money-transfer-system] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
