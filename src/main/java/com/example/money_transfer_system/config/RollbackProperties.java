@@ -11,5 +11,5 @@ import org.springframework.stereotype.Component;
 @Setter
 public class RollbackProperties {
 
-    private int windowHours;
+    private int windowMinutes;
 }

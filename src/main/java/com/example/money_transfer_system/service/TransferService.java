@@ -169,7 +169,7 @@ public class TransferService {
         }
 
         LocalDateTime expiryTime = original.getCreatedOn()
-                .plusHours(rollbackProperties.getWindowHours());
+                .plusMinutes(rollbackProperties.getWindowMinutes());
 
         if (LocalDateTime.now().isAfter(expiryTime)) {
             throw new RuntimeException("Rollback window expired");
