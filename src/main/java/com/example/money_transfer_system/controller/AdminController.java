@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import com.example.money_transfer_system.security.JwtUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ public class AdminController {
 
     private final AccountService accountService;
     private final TransferService transferService;
+    private final JwtUtil jwtUtil;
 
     @GetMapping("/accounts/pending")
     public ResponseEntity<List<Account>> getPendingAccounts() {
@@ -81,4 +83,34 @@ public class AdminController {
         List<Account> accounts = accountService.getAllAccounts();
         return ResponseEntity.ok(accounts);
     }
+
+    @PostMapping("/rollbacks/{transactionId}/approve")
+    public ResponseEntity<?> approveRollback(
+            @PathVariable String transactionId,
+            @RequestHeader("Authorization") String authHeader) {
+
+        String token = authHeader.substring(7);
+        Long adminId = jwtUtil.extractAccountId(token);
+
+        transferService.approveRollback(transactionId, adminId);
+
+        return ResponseEntity.ok("Rollback approved successfully");
+    }
+
+    @PostMapping("/rollbacks/{transactionId}/reject")
+    public ResponseEntity<?> rejectRollback(
+            @PathVariable String transactionId) {
+
+        transferService.rejectRollback(transactionId);
+
+        return ResponseEntity.ok("Rollback rejected");
+    }
+
+    @GetMapping("/transfers/rollback-requests")
+    public ResponseEntity<List<TransactionLog>> getPendingRollbacks() {
+        return ResponseEntity.ok(
+                transferService.getPendingRollbacks()
+        );
+    }
+
 }

@@ -31,7 +31,23 @@ jwt:
   
 # Application Configuration
 app:
-  min-balance: 1000.00
+  account:
+    minimum-balances:
+      SAVINGS: 5000
+      STUDENT: 0
+      CURRENT: 1000
+      SALARY: 0
+      NRE: 10000
+      NRO: 10000
+      BUSINESS: 10000
+      PREMIUM: 25000
+      JOINT: 5000
+      SENIOR: 1000
+      ADMIN: 0
+
+  rollback:
+    window-hours: 2
+
 
 # Default admin user credentials (auto-created on first startup)
 admin:
@@ -39,3 +55,12 @@ admin:
     email: admin@system.com
     password: admin123
     name: System Administrator
+
+
+# Enable file logging
+logging:
+  file:
+    name: money-transfer.log
+    path: logs/
+  level:
+    root: INFO

@@ -318,3 +318,30 @@ tr:hover {
         padding: 8px;
     }
 }
+
+.profile-section {
+    position: relative;
+}
+
+.profile-icon {
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.profile-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.profile-menu p {
+    margin: 5px 0;
+}

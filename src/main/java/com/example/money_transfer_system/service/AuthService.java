@@ -24,27 +24,36 @@ public class AuthService {
     private final JwtUtil jwtUtil;
     private final AuthenticationManager authenticationManager;
 
+
     public Account register(RegisterRequest request) {
-        return accountService.registerAccount(
-                request.getHolderName(),
-                request.getEmail(),
-                request.getPassword()
-        );
+
+        Account account = accountService.registerAccount(request);
+
+        log.info("User registered successfully: {}", request.getEmail());
+
+        return account;
     }
 
+
+
     public LoginResponse login(LoginRequest request) {
+
         try {
             Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+                    new UsernamePasswordAuthenticationToken(
+                            request.getEmail(),
+                            request.getPassword()
+                    )
             );
 
             Account account = accountService.getAccountByEmail(request.getEmail());
 
-            // Check if account is approved and active
+            // 🔒 Check approval
             if (!account.getApproved()) {
                 throw new AccountNotActiveException("Account is pending admin approval");
             }
 
+            // 🔒 Check status
             if (account.getStatus() != AccountStatus.ACTIVE) {
                 throw new AccountNotActiveException("Account is not active");
             }

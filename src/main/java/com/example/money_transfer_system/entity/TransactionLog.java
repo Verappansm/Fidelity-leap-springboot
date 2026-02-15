@@ -58,6 +58,19 @@ public class TransactionLog {
     @Column(name = "created_on", updatable = false)
     private LocalDateTime createdOn;
 
+    @Column(name = "original_transaction_id")
+    private String originalTransactionId;
+
+    @Column(name = "rollback_requested_at")
+    private LocalDateTime rollbackRequestedAt;
+
+    @Column(name = "rollback_processed_at")
+    private LocalDateTime rollbackProcessedAt;
+
+    @Column(name = "rollback_processed_by")
+    private Long rollbackProcessedBy;
+
+
     @PrePersist
     public void prePersist() {
         if (id == null) {

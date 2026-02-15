@@ -25,7 +25,8 @@ VALUES (
 -- Email: john@example.com
 -- Password: user123
 -- BCrypt hash: $2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG13AXN4dON1lKMy2S
-INSERT INTO accounts (holder_name, email, password_hash, balance, status, approved, role, min_balance, version)
+INSERT INTO accounts
+(holder_name, email, password_hash, balance, status, approved, role, account_type, version)
 VALUES (
     'John Doe',
     'john@example.com',
@@ -34,9 +35,10 @@ VALUES (
     'ACTIVE',
     TRUE,
     'ROLE_USER',
-    1000.00,
+    'SAVINGS',
     0
 );
+
 
 -- Insert Test User 2 (Approved, with balance)
 -- Email: jane@example.com
@@ -51,7 +53,7 @@ VALUES (
     'ACTIVE',
     TRUE,
     'ROLE_USER',
-    1000.00,
+    'STUDENT',
     0
 );
 
@@ -68,7 +70,7 @@ VALUES (
     'LOCKED',
     FALSE,
     'ROLE_USER',
-    1000.00,
+    'CURRENT',
     0
 );
 
