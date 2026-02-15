@@ -26,10 +26,10 @@ public class AdminUserInitializer implements CommandLineRunner {
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${admin.default.email:admin@system.com}")
+    @Value("${admin.default.email}")
     private String adminEmail;
 
-    @Value("${admin.default.password:admin123}")
+    @Value("${admin.default.password}")
     private String adminPassword;
 
     @Value("${admin.default.name:System Administrator}")
@@ -60,7 +60,6 @@ public class AdminUserInitializer implements CommandLineRunner {
         log.info("==============================================");
         log.info("DEFAULT ADMIN USER CREATED");
         log.info("Email: {}", adminEmail);
-        log.info("Password: {}", adminPassword);
         log.info("==============================================");
         log.info("IMPORTANT: Change the admin password after first login!");
         log.info("==============================================");
