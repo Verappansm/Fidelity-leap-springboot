@@ -41,6 +41,8 @@ CREATE TABLE transaction_logs (
     failure_reason VARCHAR(500),
     idempotency_key VARCHAR(255) UNIQUE,
     created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    description VARCHAR(500),
+    category ENUM('SALARY','RENT','UTILITIES','GROCERIES','ENTERTAINMENT','EDUCATION','HEALTHCARE','INVESTMENT','LOAN_REPAYMENT','GIFT','BUSINESS','OTHER') NULL,
     rollback_requested_at DATETIME NULL,
     rollback_processed_at DATETIME NULL,
     rollback_processed_by BIGINT NULL,

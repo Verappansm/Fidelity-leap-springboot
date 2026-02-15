@@ -2,6 +2,7 @@ package com.example.money_transfer_system.entity;
 
 import com.example.money_transfer_system.enums.TransactionStatus;
 import com.example.money_transfer_system.enums.TransactionType;
+import com.example.money_transfer_system.enums.TransferCategory;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -60,6 +61,13 @@ public class TransactionLog {
 
     @Column(name = "original_transaction_id")
     private String originalTransactionId;
+
+    @Column(name = "description", length = 500)
+    private String description;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
+    private TransferCategory category;
 
     @Column(name = "rollback_requested_at")
     private LocalDateTime rollbackRequestedAt;

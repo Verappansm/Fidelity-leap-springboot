@@ -246,6 +246,7 @@
                     <th>From</th>
                     <th>To</th>
                     <th>Amount</th>
+                    <th>Category</th>
                     <th>Status</th>
                 </tr>
             </thead>
@@ -260,6 +261,7 @@
                     <td>${tx.fromAccountId || 'N/A'}</td>
                     <td>${tx.toAccountId || 'N/A'}</td>
                     <td>₹${parseFloat(tx.amount).toFixed(2)}</td>
+                    <td>${tx.category || '—'}</td>
                     <td>${tx.status}</td>
                 </tr>
             `;

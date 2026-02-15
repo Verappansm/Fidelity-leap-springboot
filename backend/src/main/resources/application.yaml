@@ -18,6 +18,15 @@ spring:
         format_sql: true
     open-in-view: false
 
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4
+          temperature: 0.3
+          max-tokens: 50
+
 server:
   port: 8080
   error:
