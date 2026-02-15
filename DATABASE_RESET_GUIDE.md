@@ -36,13 +36,12 @@ OR
 
 ### 3. Admin User Auto-Created!
 
-When the application starts, it will **automatically create** the admin user:
+When the application starts, it will **automatically create** the admin user using the credentials from your environment variables:
 
 ```
 ==============================================
 DEFAULT ADMIN USER CREATED
-Email: admin@system.com
-Password: admin123
+Email: <your ADMIN_EMAIL>
 ==============================================
 ```
 
@@ -52,9 +51,7 @@ You'll see this message in the console logs.
 
 Go to: http://localhost:8080/login.html
 
-**Credentials:**
-- Email: `admin@system.com`
-- Password: `admin123`
+Use the admin email and password you configured in your `.env` file.
 
 ### 5. Add Users via Frontend
 
@@ -68,17 +65,17 @@ Now you can register new users through the frontend:
 
 ## Configuration
 
-The admin credentials are stored in `application.yaml`:
+The admin credentials are loaded from environment variables (see `.env`):
 
 ```yaml
 admin:
   default:
-    email: admin@system.com
-    password: admin123
-    name: System Administrator
+    email: ${ADMIN_EMAIL:admin@system.com}
+    password: ${ADMIN_PASSWORD}
+    name: ${ADMIN_NAME:System Administrator}
 ```
 
-You can change these values before starting the application if you want different credentials.
+Set these values in your `.env` file before starting the application.
 
 ## How It Works
 
@@ -106,7 +103,7 @@ You can change these values before starting the application if you want differen
 **Can't login with admin credentials?**
 - Make sure you see the "DEFAULT ADMIN USER CREATED" message in logs
 - Check the database: `SELECT * FROM accounts WHERE email='admin@system.com';`
-- Verify the password in `application.yaml` matches what you're typing
+- Verify the `ADMIN_PASSWORD` env var matches what you're typing
 
 **Want to recreate the admin user?**
 1. Run `reset-database.sql` again

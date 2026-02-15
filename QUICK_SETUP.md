@@ -53,15 +53,10 @@ mysql -u root -p money_transfer_db < database/seed-data.sql
 
 ### 5. Configure Application
 
-Edit `src/main/resources/application.yaml`:
+Update the `.env` file in the project root with your actual values:
 
-```yaml
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3306/money_transfer_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: YOUR_MYSQL_PASSWORD  # Change this to your MySQL password
-```
+The application reads sensitive values (DB password, JWT secret, admin password) from environment variables.
+See `.env` for the full list of required variables.
 
 ### 6. Build and Run
 
@@ -86,22 +81,15 @@ http://localhost:8080
 
 ## Default Login Credentials
 
-### Admin Account
-- **Email:** admin@system.com
-- **Password:** admin123
-
-### Test User Accounts (Approved)
-- **Email:** john@example.com | **Password:** user123
-- **Email:** jane@example.com | **Password:** user123
-
-### Test User (Pending Approval)
-- **Email:** bob@example.com | **Password:** user123
+Credentials are configured via environment variables in `.env`.
+The admin account is auto-created on first startup using `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
+Test user passwords correspond to the BCrypt hashes in `seed-data.sql`.
 
 ## Testing the Application
 
 ### 1. Login as Admin
 1. Go to http://localhost:8080/login.html
-2. Login with admin@system.com / admin123
+2. Login with the admin credentials from your `.env`
 3. You'll see the admin dashboard
 
 ### 2. Approve Pending User
@@ -111,7 +99,7 @@ http://localhost:8080
 
 ### 3. Login as User
 1. Logout from admin
-2. Login with john@example.com / user123
+2. Login with a test user email and the password you set for the seed data
 3. You'll see the user dashboard with balance ₹5000
 
 ### 4. Transfer Money
@@ -154,8 +142,7 @@ server:
 
 ## Security Notes
 
-The BCrypt password hashes in the seed data are:
-- **admin123** → `$2a$10$8cjz95BCg3xLL95xMeIgAOidoQd0mW9GvVPvb4b6RZ.WaIxPVq/Oi`
-- **user123** → `$2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG13AXN4dON1lKMy2S`
+All sensitive values (DB password, JWT secret, admin password) are loaded from environment variables.
+See `.env` for the required variables. **Never commit real secrets to version control.**
 
-These are proper BCrypt hashes with strength 10 (standard security). They are safe to use for development and testing. For production, change the admin password after first login.
+The BCrypt hashes in the seed data use strength 10 (standard security). For production, regenerate all hashes and rotate all secrets.
