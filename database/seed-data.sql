@@ -1,13 +1,16 @@
 -- Money Transfer System - Seed Data
 -- Initial admin account and test users
 -- Ready to run directly - BCrypt password hashes are pre-generated
+--
+-- IMPORTANT: The hashes below are for DEVELOPMENT/TESTING only.
+-- Generate new hashes for production using PasswordHashGenerator:
+--   java PasswordHashGenerator <your-password>
 
 USE money_transfer_db;
 
 -- Insert Admin Account
 -- Email: admin@system.com
--- Password: admin123
--- BCrypt hash: $2a$10$8cjz95BCg3xLL95xMeIgAOidoQd0mW9GvVPvb4b6RZ.WaIxPVq/Oi
+-- (password hash must be regenerated for production)
 INSERT INTO accounts (holder_name, email, password_hash, balance, status, approved, role, min_balance, version)
 VALUES (
     'System Administrator',
@@ -23,8 +26,7 @@ VALUES (
 
 -- Insert Test User 1 (Approved, with balance)
 -- Email: john@example.com
--- Password: user123
--- BCrypt hash: $2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG13AXN4dON1lKMy2S
+-- (password hash must be regenerated for production)
 INSERT INTO accounts
 (holder_name, email, password_hash, balance, status, approved, role, account_type, version)
 VALUES (
@@ -42,8 +44,7 @@ VALUES (
 
 -- Insert Test User 2 (Approved, with balance)
 -- Email: jane@example.com
--- Password: user123
--- BCrypt hash: $2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG13AXN4dON1lKMy2S
+-- (password hash must be regenerated for production)
 INSERT INTO accounts (holder_name, email, password_hash, balance, status, approved, role, min_balance, version)
 VALUES (
     'Jane Smith',
@@ -59,8 +60,7 @@ VALUES (
 
 -- Insert Test User 3 (Pending Approval)
 -- Email: bob@example.com
--- Password: user123
--- BCrypt hash: $2a$10$dXJ3SW6G7P50lGmMkkmwe.20cQQubK3.HZWzG13AXN4dON1lKMy2S
+-- (password hash must be regenerated for production)
 INSERT INTO accounts (holder_name, email, password_hash, balance, status, approved, role, min_balance, version)
 VALUES (
     'Bob Johnson',
@@ -77,15 +77,10 @@ VALUES (
 -- ============================================
 -- CREDENTIALS FOR TESTING
 -- ============================================
--- Admin Login:
---   Email: admin@system.com
---   Password: admin123
+-- See .env for required environment
+-- variables (DB_PASSWORD, JWT_SECRET, etc.)
 --
--- User Logins (Approved):
---   Email: john@example.com | Password: user123
---   Email: jane@example.com | Password: user123
---
--- User Login (Pending Approval):
---   Email: bob@example.com | Password: user123
+-- For development, set passwords and generate
+-- BCrypt hashes with PasswordHashGenerator.
 -- ============================================
 

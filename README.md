@@ -58,18 +58,19 @@ The seed data includes pre-generated BCrypt password hashes, so you can run it d
 mysql -u root -p money_transfer_db < database/seed-data.sql
 ```
 
-**Note**: The BCrypt hashes are already included for the default passwords (admin123, user123).
+**Note**: The BCrypt hashes are already included for the default test passwords.
 
 ## Application Configuration
 
-Update `src/main/resources/application.yaml` with your MySQL credentials:
+The application reads sensitive values from environment variables defined in `.env`.
+Update the `.env` file in the project root with your actual values before starting the app.
 
 ```yaml
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/money_transfer_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: YOUR_MYSQL_PASSWORD
+    url: ${DB_URL:jdbc:mysql://localhost:3306/money_transfer_db?...}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD}
 ```
 
 ## Build and Run
@@ -91,18 +92,10 @@ The application will start on **http://localhost:8080**
 
 ## Default Credentials
 
-After running the seed data script, you can use these test accounts:
+After running the seed data script, you can use the test accounts.
+Passwords for seed data accounts must be set by generating BCrypt hashes with `PasswordHashGenerator` and inserting them into `seed-data.sql`.
 
-| Role  | Email              | Password | Status   |
-|-------|-------------------|----------|----------|
-| Admin | admin@system.com  | admin123 | Approved |
-| User  | john@example.com  | user123  | Approved |
-| User  | jane@example.com  | user123  | Approved |
-| User  | bob@example.com   | user123  | Pending  |
-
-**⚠️ Important**: The seed data contains placeholder password hashes. For actual BCrypt hashes, either:
-1. Register new users through the application
-2. Generate BCrypt hashes and update the SQL script
+**⚠️ Important**: Never commit real credentials. Use environment variables configured in `.env`.
 
 ## API Endpoints
 
@@ -148,7 +141,7 @@ After running the seed data script, you can use these test accounts:
 
 ### 2. Admin Approves User
 
-1. Login as admin (admin@system.com / admin123)
+1. Login as admin (use the admin email/password from your `.env`)
 2. Go to admin dashboard
 3. See pending user in "Pending Approvals" section
 4. Click "Approve" → User account becomes ACTIVE with ₹1000 initial balance
@@ -255,7 +248,7 @@ database/
 
 ## Development Notes
 
-- **JWT Secret**: Change the secret in `application.yaml` for production
+- **JWT Secret**: Provide via `JWT_SECRET` env var — never commit it to source control
 - **Min Balance**: Default ₹1000, configurable in `application.yaml` (`app.min-balance`)
 - **Token Expiration**: 24 hours (86400000 ms), configurable in `application.yaml`
 - **Password Encoding**: BCrypt with strength 10
