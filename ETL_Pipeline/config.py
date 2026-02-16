@@ -13,9 +13,9 @@ MYSQL_CONFIG = {
 
 
 SNOWFLAKE_CONFIG = {
-    "user": "<username>",
-    "password": "<pw>",
-    "account": "<account-identifier>",
+    "user": "VISHALK",
+    "password": "vishal_K_140305",
+    "account": "GZMBSPD-CF76283",
     "warehouse": "MTS_WH",
     "database": "MONEY_TRANSFER_OLTP",
     "schema": "CORE"

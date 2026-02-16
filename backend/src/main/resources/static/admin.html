@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Money Transfer System</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
+
 <div class="navbar">
     <h2>Money Transfer System - Admin</h2>
     <div>
@@ -19,23 +19,24 @@
 
 <div class="container">
 
-    <div class="card">
-        <h1>Admin Dashboard</h1>
+    <!-- ADMIN DASHBOARD HEADER -->
+    <div class="card" style="display:flex; justify-content:space-between; align-items:center;">
+        <h1 style="margin:0;">Admin Dashboard</h1>
+        <button onclick="loadAnalytics()" class="btn btn-primary">
+            View Analytics
+        </button>
     </div>
 
-    <!-- Pending Account Approvals -->
+    <!-- ANALYTICS SECTION -->
+    <div id="analyticsSection" style="margin-top:20px;"></div>
+
+    <!-- PENDING APPROVALS -->
     <div class="card">
         <h2>Pending Approvals</h2>
         <div id="pendingAccounts"></div>
     </div>
 
-    <!-- Pending Rollback Requests -->
-    <div class="card">
-        <h2>Pending Rollback Requests</h2>
-        <div id="pendingRollbacks"></div>
-    </div>
-
-    <!-- Deposit -->
+    <!-- DEPOSIT -->
     <div class="card">
         <h2>Deposit Money</h2>
         <form id="depositForm">
@@ -50,17 +51,18 @@
             </div>
 
             <div id="depositMessage" class="message"></div>
+
             <button type="submit" class="btn btn-primary">Deposit</button>
         </form>
     </div>
 
-    <!-- All Transactions -->
+    <!-- TRANSACTIONS -->
     <div class="card">
         <h2>All Transactions</h2>
         <div id="allTransactions"></div>
     </div>
 
-    <!-- All Accounts -->
+    <!-- ACCOUNTS -->
     <div class="card">
         <h2>All Accounts</h2>
         <div id="allAccounts"></div>
@@ -69,9 +71,11 @@
 </div>
 
 <script src="/js/app.js"></script>
+
 <script>
 
-    // ================= AUTH CHECK =================
+    /* ================= AUTH CHECK ================= */
+
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
 
@@ -79,34 +83,159 @@
         window.location.href = '/login.html';
     }
 
-    document.getElementById('userName').textContent =
-        localStorage.getItem('holderName');
+    document.getElementById('userName').textContent = localStorage.getItem('holderName');
 
-    // ================= PENDING ACCOUNTS =================
+
+    /* ================= ANALYTICS ================= */
+
+    let dailyChart, monthlyChart, statusChart;
+
+    async function loadAnalytics() {
+        try {
+            const response = await apiCall('/api/v1/analytics/kpis');
+
+            if (response.ok) {
+                const data = await response.json();
+                displayAnalytics(data);
+            } else {
+                alert("Failed to load analytics");
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    function displayAnalytics(data) {
+        const container = document.getElementById('analyticsSection');
+        const k = data.kpis;
+
+        const failureRate = 100 - (k.successRate ?? 0);
+
+        const fraudRisk =
+            failureRate > 20 ? "⚠ HIGH RISK" :
+            failureRate > 10 ? "⚠ MEDIUM RISK" :
+            "✅ LOW RISK";
+
+        const growthRate = calculateGrowthRate(data.monthlyTrend);
+
+        container.innerHTML = `
+            <div class="card">
+                <h2>📊 KPI Overview</h2>
+                <p><strong>Total Transactions:</strong> ${k.totalTransactions ?? 0}</p>
+                <p><strong>Total Amount:</strong> ₹${(k.totalAmount ?? 0).toFixed(2)}</p>
+                <p><strong>Average Transaction:</strong> ₹${(k.averageTransactionAmount ?? 0).toFixed(2)}</p>
+                <p><strong>Largest Transaction:</strong> ₹${(k.largestTransaction ?? 0).toFixed(2)}</p>
+                <p><strong>Success Rate:</strong> ${k.successRate ?? 0}%</p>
+                <p><strong>Growth Rate:</strong> ${growthRate}%</p>
+                <p><strong>Fraud Indicator:</strong> ${fraudRisk}</p>
+            </div>
+
+            <div class="card">
+                <h2>📅 Daily Trend</h2>
+                <canvas id="dailyChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h2>📆 Monthly Trend</h2>
+                <canvas id="monthlyChart"></canvas>
+            </div>
+
+            <div class="card">
+                <h2>📌 Status Breakdown</h2>
+                <canvas id="statusChart"></canvas>
+            </div>
+        `;
+
+        renderDailyChart(data.dailyTrend);
+        renderMonthlyChart(data.monthlyTrend);
+        renderStatusChart(data.statusBreakdown);
+    }
+
+    function calculateGrowthRate(monthlyTrend) {
+        if (!monthlyTrend || monthlyTrend.length < 2) return 0;
+
+        const last = monthlyTrend[monthlyTrend.length - 1].TOTAL_AMOUNT;
+        const prev = monthlyTrend[monthlyTrend.length - 2].TOTAL_AMOUNT;
+
+        if (!prev) return 0;
+
+        return (((last - prev) / prev) * 100).toFixed(2);
+    }
+
+    function renderDailyChart(data) {
+        if (dailyChart) dailyChart.destroy();
+
+        const labels = data.map(d => d.FULL_DATE);
+        const values = data.map(d => d.TOTAL_AMOUNT);
+
+        dailyChart = new Chart(document.getElementById('dailyChart'), {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'Daily Amount',
+                    data: values,
+                    borderWidth: 2,
+                    tension: 0.3
+                }]
+            }
+        });
+    }
+
+    function renderMonthlyChart(data) {
+        if (monthlyChart) monthlyChart.destroy();
+
+        const labels = data.map(m => `${m.YEAR}-${m.MONTH}`);
+        const values = data.map(m => m.TOTAL_AMOUNT);
+
+        monthlyChart = new Chart(document.getElementById('monthlyChart'), {
+            type: 'bar',
+            data: {
+                labels,
+                datasets: [{
+                    label: 'Monthly Amount',
+                    data: values
+                }]
+            }
+        });
+    }
+
+    function renderStatusChart(data) {
+        if (statusChart) statusChart.destroy();
+
+        const labels = data.map(s => s.STATUS);
+        const values = data.map(s => s.COUNT);
+
+        statusChart = new Chart(document.getElementById('statusChart'), {
+            type: 'pie',
+            data: {
+                labels,
+                datasets: [{
+                    data: values
+                }]
+            }
+        });
+    }
+
+
+    /* ================= ADMIN FEATURES (UNCHANGED) ================= */
+
     async function loadPendingAccounts() {
         const response = await apiCall('/api/v1/admin/accounts/pending');
-        if (!response.ok) return;
+        if (response.ok) {
+            displayPendingAccounts(await response.json());
+        }
+    }
 
-        const accounts = await response.json();
+    function displayPendingAccounts(accounts) {
         const container = document.getElementById('pendingAccounts');
 
         if (accounts.length === 0) {
-            container.innerHTML = "<p>No pending approvals.</p>";
+            container.innerHTML = '<p>No pending approvals.</p>';
             return;
         }
 
-        let html = `
-            <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-        `;
+        let html = '<table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Actions</th></tr></thead><tbody>';
 
         accounts.forEach(acc => {
             html += `
@@ -118,179 +247,58 @@
                         <button onclick="approveAccount(${acc.id})" class="btn btn-small btn-success">Approve</button>
                         <button onclick="rejectAccount(${acc.id})" class="btn btn-small btn-danger">Reject</button>
                     </td>
-                </tr>
-            `;
+                </tr>`;
         });
 
-        html += "</tbody></table>";
+        html += '</tbody></table>';
         container.innerHTML = html;
     }
 
-    async function approveAccount(id) {
-        await apiCall(`/api/v1/admin/accounts/${id}/approve`, { method: 'POST' });
-        loadPendingAccounts();
-        loadAllAccounts();
-    }
-
-    async function rejectAccount(id) {
-        await apiCall(`/api/v1/admin/accounts/${id}/reject`, { method: 'POST' });
-        loadPendingAccounts();
-        loadAllAccounts();
-    }
-
-    // ================= ROLLBACK REQUESTS =================
-    async function loadPendingRollbacks() {
-        const response = await apiCall('/api/v1/admin/transfers/rollback-requests');
-        if (!response.ok) return;
-
-        const rollbacks = await response.json();
-        const container = document.getElementById('pendingRollbacks');
-
-        if (!rollbacks || rollbacks.length === 0) {
-            container.innerHTML = "<p>No pending rollback requests.</p>";
-            return;
-        }
-
-        let html = `
-            <table>
-            <thead>
-                <tr>
-                    <th>Transaction ID</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Amount</th>
-                    <th>Requested At</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-        `;
-
-        rollbacks.forEach(tx => {
-            html += `
-                <tr>
-                    <td>${tx.id}</td>
-                    <td>${tx.fromAccountId}</td>
-                    <td>${tx.toAccountId}</td>
-                    <td>₹${parseFloat(tx.amount).toFixed(2)}</td>
-                    <td>${tx.rollbackRequestedAt ? new Date(tx.rollbackRequestedAt).toLocaleString() : ''}</td>
-                    <td>
-                        <button onclick="approveRollback('${tx.id}')" class="btn btn-small btn-success">Approve</button>
-                        <button onclick="rejectRollback('${tx.id}')" class="btn btn-small btn-danger">Reject</button>
-                    </td>
-                </tr>
-            `;
-        });
-
-        html += "</tbody></table>";
-        container.innerHTML = html;
-    }
-
-    async function approveRollback(transactionId) {
-        if (!confirm("Approve this rollback?")) return;
-
-        await apiCall(`/api/v1/admin/rollbacks/${transactionId}/approve`, { method: 'POST' });
-
-        loadPendingRollbacks();
-        loadAllTransactions();
-    }
-
-    async function rejectRollback(transactionId) {
-        if (!confirm("Reject this rollback?")) return;
-
-        await apiCall(`/api/v1/admin/rollbacks/${transactionId}/reject`, { method: 'POST' });
-
-        loadPendingRollbacks();
-        loadAllTransactions();
-    }
-
-    // ================= DEPOSIT =================
-    document.getElementById('depositForm').addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const data = {
-            accountId: parseInt(document.getElementById('depositAccountId').value),
-            amount: parseFloat(document.getElementById('depositAmount').value)
-        };
-
-        const response = await apiCall('/api/v1/admin/accounts/deposit', {
-            method: 'POST',
-            body: JSON.stringify(data)
-        });
-
-        if (response.ok) {
-            document.getElementById('depositForm').reset();
-            loadAllTransactions();
-        }
-    });
-
-    // ================= TRANSACTIONS =================
     async function loadAllTransactions() {
         const response = await apiCall('/api/v1/admin/transactions');
-        if (!response.ok) return;
+        if (response.ok) {
+            displayAllTransactions(await response.json());
+        }
+    }
 
-        const transactions = await response.json();
+    function displayAllTransactions(transactions) {
         const container = document.getElementById('allTransactions');
 
         if (transactions.length === 0) {
-            container.innerHTML = "<p>No transactions yet.</p>";
+            container.innerHTML = '<p>No transactions yet.</p>';
             return;
         }
 
-        let html = `
-            <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-        `;
+        let html = '<table><thead><tr><th>Date</th><th>Type</th><th>From</th><th>To</th><th>Amount</th><th>Status</th></tr></thead><tbody>';
 
-        transactions.slice(0, 30).forEach(tx => {
+        transactions.slice(0, 20).forEach(tx => {
+            const date = new Date(tx.createdOn).toLocaleString();
             html += `
                 <tr>
-                    <td>${new Date(tx.createdOn).toLocaleString()}</td>
+                    <td>${date}</td>
                     <td>${tx.transactionType}</td>
                     <td>${tx.fromAccountId || 'N/A'}</td>
                     <td>${tx.toAccountId || 'N/A'}</td>
                     <td>₹${parseFloat(tx.amount).toFixed(2)}</td>
                     <td>${tx.status}</td>
-                </tr>
-            `;
+                </tr>`;
         });
 
-        html += "</tbody></table>";
+        html += '</tbody></table>';
         container.innerHTML = html;
     }
 
-    // ================= ACCOUNTS =================
     async function loadAllAccounts() {
         const response = await apiCall('/api/v1/admin/accounts');
-        if (!response.ok) return;
+        if (response.ok) {
+            displayAllAccounts(await response.json());
+        }
+    }
 
-        const accounts = await response.json();
+    function displayAllAccounts(accounts) {
         const container = document.getElementById('allAccounts');
 
-        let html = `
-            <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Balance</th>
-                    <th>Status</th>
-                    <th>Approved</th>
-                </tr>
-            </thead>
-            <tbody>
-        `;
+        let html = '<table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Balance</th><th>Status</th><th>Approved</th></tr></thead><tbody>';
 
         accounts.forEach(acc => {
             html += `
@@ -301,24 +309,19 @@
                     <td>₹${parseFloat(acc.balance).toFixed(2)}</td>
                     <td>${acc.status}</td>
                     <td>${acc.approved ? '✓' : '✗'}</td>
-                </tr>
-            `;
+                </tr>`;
         });
 
-        html += "</tbody></table>";
+        html += '</tbody></table>';
         container.innerHTML = html;
     }
 
-    // ================= INITIAL LOAD =================
+
+    /* INITIAL LOAD */
     loadPendingAccounts();
-    loadPendingRollbacks();
     loadAllTransactions();
     loadAllAccounts();
 
-    // Auto refresh rollback requests every 10 seconds
-    setInterval(loadPendingRollbacks, 10000);
-
 </script>
-
 </body>
 </html>

@@ -2,12 +2,6 @@ spring:
   application:
     name: money-transfer-system
   
-  datasource:
-    url: jdbc:mysql://localhost:3306/money_transfer_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: ${DB_USERNAME:root}
-    password: ${DB_PASSWORD}
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  
   jpa:
     hibernate:
       ddl-auto: update
@@ -20,9 +14,9 @@ spring:
 
 snowflake:
   datasource:
-    url: jdbc:snowflake://<account-identifier>.snowflakecomputing.com/?warehouse=MTS_WH&db=MONEY_TRANSFER_DW&schema=ANALYTICS&use_arrow_result_format=false
-    username: <username>
-    password: <pw>
+    url: jdbc:snowflake://GZMBSPD-CF76283.snowflakecomputing.com/?warehouse=MTS_WH&db=MONEY_TRANSFER_DW&schema=ANALYTICS&use_arrow_result_format=false
+    username: VISHALK
+    password: vishal_K_140305
     driver-class-name: net.snowflake.client.jdbc.SnowflakeDriver
 
 
@@ -34,9 +28,9 @@ server:
 
 # JWT Configuration
 jwt:
-  secret: ${JWT_SECRET}
-  expiration: ${JWT_EXPIRATION}
-  
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  expiration: 86400000
+
 # Application Configuration
 app:
   account:
@@ -53,16 +47,13 @@ app:
       SENIOR: 1000
       ADMIN: 0
 
-  rollback:
-    window-minutes: 1
-
 
 # Default admin user credentials (auto-created on first startup)
 admin:
   default:
-    email: ${ADMIN_EMAIL}
-    password: ${ADMIN_PASSWORD}
-    name: ${ADMIN_NAME:System Administrator}
+    email: admin@system.com
+    password: admin123
+    name: System Administrator
 
 
 # Enable file logging
