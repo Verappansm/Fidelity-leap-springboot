@@ -1,18 +1,26 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../../core/api';
 import { RouterModule } from '@angular/router';
 import { FormService } from '../../core/services/form.service';
+import { AccountSearch } from '../../shared/account-search/account-search';
 
 @Component({
   selector: 'app-deposit',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [
+    RouterModule,
+    CommonModule,
+    FormsModule,
+    AccountSearch
+  ],
   templateUrl: './deposit.html'
 })
 export class Deposit {
+
+  accountsAPI = API.ADMIN.ALL_ACCOUNTS;
 
   accountId = 0;
   amount = 0;
@@ -26,27 +34,31 @@ export class Deposit {
     private form: FormService
   ) {}
 
-  deposit(): void {
+  onAccountSelected(account: any): void {
+    this.accountId = account.id;
+  }
 
-  if (this.loading) return;
+  deposit(form: NgForm): void {
 
-  this.loading = true;
+    if (this.loading) return;
 
-  this.http.post(API.ADMIN.DEPOSIT, {
-    accountId: this.accountId,
-    amount: this.amount
-  }).subscribe({
-    next: () => {
-      this.form.setSuccess(this, 'Deposit successful');
-      this.accountId = 0;
-      this.amount = 0;
-      this.cdr.detectChanges();
-    },
-    error: (err) => {
-      this.form.setError(this, err, 'Deposit failed');
-      this.cdr.detectChanges();
-    }
-  });
-}
+    this.loading = true;
 
+    this.http.post(API.ADMIN.DEPOSIT, {
+      accountId: this.accountId,
+      amount: this.amount
+    }).subscribe({
+      next: () => {
+        this.form.setSuccess(this, 'Deposit successful');
+        this.accountId = 0;
+        this.amount = 0;
+        form.resetForm();
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        this.form.setError(this, err, 'Deposit failed');
+        this.cdr.detectChanges();
+      }
+    });
+  }
 }

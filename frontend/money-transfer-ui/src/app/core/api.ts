@@ -11,7 +11,8 @@ export const API = {
 
   ACCOUNTS: {
     DETAILS: (id: number) => `/api/v1/accounts/${id}`,
-    BALANCE: (id: number) => `/api/v1/accounts/${id}/balance`
+    BALANCE: (id: number) => `/api/v1/accounts/${id}/balance`,
+    SEARCH: '/api/v1/accounts/search'
   },
 
   ADMIN: {

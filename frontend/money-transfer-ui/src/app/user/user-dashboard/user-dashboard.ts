@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ChangeDetectorRef } from '@angular/core';
 import { API } from '../../core/api';
 import { AuthService } from '../../core/services/auth.service';
+import { BalanceService } from '../../core/services/balance.service';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -22,7 +23,8 @@ export class UserDashboard {
     private http: HttpClient,
     private router: Router,
     private auth: AuthService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private balanceService: BalanceService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +38,10 @@ export class UserDashboard {
     this.accountId = localStorage.getItem('accountId') || '';
 
     this.loadBalance();
+
+    this.balanceService.balanceChanged$.subscribe(() => {
+      this.loadBalance();
+    });
   }
 
   loadBalance(): void {

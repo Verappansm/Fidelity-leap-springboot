@@ -22,7 +22,7 @@
         </thead>
 
         <tbody>
-          @for (acc of accounts; track acc.id) {
+          @for (acc of paginatedAccounts; track acc.id) {
             <tr>
               <td>{{ acc.id }}</td>
               <td>{{ acc.holderName }}</td>
@@ -45,6 +45,13 @@
           }
         </tbody>
       </table>
+
+      <app-pagination
+        [totalItems]="accounts.length"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)">
+      </app-pagination>
     }
     <br><br>
     <!-- <button class="btn btn-secondary" routerLink="/admin">Dashboard</button> -->

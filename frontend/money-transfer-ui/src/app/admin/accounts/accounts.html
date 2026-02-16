@@ -5,37 +5,74 @@
     @if (accounts.length === 0) {
       <p>No accounts found.</p>
     } @else {
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Balance</th>
-            <th>Status</th>
-            <th>Approved</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          @for (acc of accounts; track acc.id) {
+      <div class="table-wrapper">
+        <table>
+          <thead>
             <tr>
-              <td>{{ acc.id }}</td>
-              <td>{{ acc.holderName }}</td>
-              <td>{{ acc.email }}</td>
-              <td>₹{{ formatAmount(acc.balance) }}</td>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Balance</th>
+              <th>
+                <div class="th-filter">
+                  <span>Status</span>
+                  <select
+                    [(ngModel)]="filters.status"
+                    (change)="applyFilters()"
+                    class="table-filter">
 
-              <td>
-                <span class="badge {{ acc.status.toLowerCase() }}">
-                  {{ acc.status }}
-                </span>
-              </td>
+                    <option value="">All</option>
+                    <option value="ACTIVE">Active</option>
+                    <option value="LOCKED">Locked</option>
+                    <option value="CLOSED">Closed</option>
+                  </select>
+                </div>
+              </th>
 
-              <td>{{ acc.approved ? '✓' : '✗' }}</td>
+              <th>
+                <div class="th-filter">
+                  <span>Approved</span>
+                  <select
+                    [(ngModel)]="filters.approved"
+                    (change)="applyFilters()"
+                    class="table-filter">
+
+                    <option value="">All</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                  </select>
+                </div>
+              </th>
             </tr>
-          }
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            @for (acc of paginatedAccounts; track acc.id) {
+              <tr>
+                <td>{{ acc.id }}</td>
+                <td>{{ acc.holderName }}</td>
+                <td>{{ acc.email }}</td>
+                <td>₹{{ formatAmount(acc.balance) }}</td>
+
+                <td>
+                  <span class="badge {{ acc.status.toLowerCase() }}">
+                    {{ acc.status }}
+                  </span>
+                </td>
+
+                <td>{{ acc.approved ? '✓' : '✗' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <app-pagination
+          [totalItems]="filteredAccounts.length"
+          [pageSize]="pageSize"
+          [currentPage]="currentPage"
+          (pageChange)="onPageChange($event)">
+        </app-pagination>
+        
+      </div>
     }
 
     <br>
