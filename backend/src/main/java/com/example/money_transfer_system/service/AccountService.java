@@ -1,5 +1,6 @@
 package com.example.money_transfer_system.service;
 
+import com.example.money_transfer_system.dto.AccountSearch;
 import com.example.money_transfer_system.dto.DepositRequest;
 import com.example.money_transfer_system.entity.Account;
 import com.example.money_transfer_system.entity.TransactionLog;
@@ -122,5 +123,20 @@ public class AccountService {
     public BigDecimal getBalance(Long accountId) {
         Account account = getAccountById(accountId);
         return account.getBalance();
+    }
+
+    public List<AccountSearch> getSearchableAccounts(Long currentAccountId) {
+
+        return accountRepository.findAll()
+                .stream()
+                .filter(acc -> !acc.getId().equals(1L)) // exclude system admin
+                .filter(acc -> !acc.getId().equals(currentAccountId)) // exclude self
+                .filter(acc -> acc.getStatus() == AccountStatus.ACTIVE) // only active accounts
+
+                .map(acc -> new AccountSearch(
+                        acc.getId(),
+                        acc.getHolderName()
+                ))
+                .toList();
     }
 }

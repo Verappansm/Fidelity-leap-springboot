@@ -1,5 +1,6 @@
 package com.example.money_transfer_system.controller;
 
+import com.example.money_transfer_system.dto.AccountSearch;
 import com.example.money_transfer_system.entity.Account;
 import com.example.money_transfer_system.security.JwtUtil;
 import com.example.money_transfer_system.service.AccountService;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/v1/accounts")
@@ -63,5 +66,23 @@ public class AccountController {
         response.put("balance", balance);
         
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/search")
+    @PreAuthorize("hasAnyRole('USER','ADMIN')")
+    public ResponseEntity<List<AccountSearch>> searchAccounts(
+            @RequestHeader("Authorization") String authHeader) {
+
+        // Extract token
+        String token = authHeader.substring(7);
+
+        // Extract current account id from JWT
+        Long authenticatedAccountId = jwtUtil.extractAccountId(token);
+
+        // Fetch filtered accounts
+        List<AccountSearch> accounts =
+                accountService.getSearchableAccounts(authenticatedAccountId);
+
+        return ResponseEntity.ok(accounts);
     }
 }
