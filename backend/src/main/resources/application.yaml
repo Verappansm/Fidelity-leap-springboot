@@ -46,7 +46,8 @@ app:
       JOINT: 5000
       SENIOR: 1000
       ADMIN: 0
-
+  rollback:
+    window-minutes: 1
 
 # Default admin user credentials (auto-created on first startup)
 admin:
