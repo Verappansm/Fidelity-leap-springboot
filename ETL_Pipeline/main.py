@@ -57,16 +57,6 @@ def test_mysql_connection():
         print("Error:", e)
         traceback.print_exc()
 
-# def test_mysql_connection():
-    print("Testing MySQL connection...")
-    conn = mysql.connector.connect(**MYSQL_CONFIG)
-    cursor = conn.cursor()
-    cursor.execute("SELECT COUNT(*) FROM accounts")
-    count = cursor.fetchone()[0]
-    print("MySQL accounts count:", count)
-    cursor.close()
-    conn.close()
-
 
 def test_snowflake_connection():
     print("Testing Snowflake connection...")

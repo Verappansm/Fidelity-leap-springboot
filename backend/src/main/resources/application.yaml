@@ -23,9 +23,9 @@ spring:
 
 snowflake:
   datasource:
-    url: jdbc:snowflake://GZMBSPD-CF76283.snowflakecomputing.com/?warehouse=MTS_WH&db=MONEY_TRANSFER_DW&schema=ANALYTICS&use_arrow_result_format=false
-    username: VISHALK
-    password: vishal_K_140305
+    url: ${SNOWFLAKE_URL:jdbc:snowflake://GZMBSPD-CF76283.snowflakecomputing.com/?warehouse=MTS_WH&db=MONEY_TRANSFER_DW&schema=ANALYTICS&use_arrow_result_format=false}
+    username: ${SNOWFLAKE_USERNAME:VISHALK}
+    password: ${SNOWFLAKE_PASSWORD}
     driver-class-name: net.snowflake.client.jdbc.SnowflakeDriver
 
 server:
