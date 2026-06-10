@@ -21,7 +21,6 @@ export const API = {
     REJECT: (id: number) => `/api/v1/admin/accounts/${id}/reject`,
     DEPOSIT: '/api/v1/admin/accounts/deposit',
     TRANSACTIONS: '/api/v1/admin/transactions',
-    ALL_ACCOUNTS: '/api/v1/admin/accounts',
-    SNOWFLAKE: '/api/v1/analytics/kpis'
+    ALL_ACCOUNTS: '/api/v1/admin/accounts'
   }
 };

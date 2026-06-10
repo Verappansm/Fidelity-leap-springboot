@@ -11,7 +11,6 @@ import { AdminDashboard } from './admin/admin-dashboard/admin-dashboard';
 import { Deposit } from './admin/deposit/deposit';
 import { AdminTransactions } from './admin/admin-transactions/admin-transactions';
 import { Accounts } from './admin/accounts/accounts';
-import { Analytics } from './admin/analytics/analytics';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -36,8 +35,7 @@ export const routes: Routes = [
       { path: 'approvals', component: Approvals },
       { path: 'deposit', component: Deposit },
       { path: 'transactions', component: AdminTransactions },
-      { path: 'accounts', component: Accounts },
-      { path: 'analytics', component: Analytics }
+      { path: 'accounts', component: Accounts }
     ]
   },
   { path: '**', redirectTo: '' }
